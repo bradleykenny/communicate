@@ -17,7 +17,7 @@ class Card extends Component {
 
 	comments = () => {
 		return (
-			<input type="text" />
+			<input type="text" placeholder="What's your comment?" />
 		);
 	}
 }
