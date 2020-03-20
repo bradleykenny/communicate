@@ -9,8 +9,8 @@ class Header extends Component {
 					<a href="/">communicate</a>
 				</h1>
 				<p>
-					<a href="#">Home</a>
-					<a href="#">Profile</a>
+					<a href="/">Home</a>
+					<a href="/">Profile</a>
 				</p>
 			</header>
 		);

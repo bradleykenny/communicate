@@ -8,7 +8,16 @@ class Card extends Component {
 			<div className="card">
 				<h2>{ title }</h2>
 				<p>{ text }</p>
+				<div className="comments">
+					{ this.comments() }
+				</div>
 			</div>
+		);
+	}
+
+	comments = () => {
+		return (
+			<input type="text" />
 		);
 	}
 }
