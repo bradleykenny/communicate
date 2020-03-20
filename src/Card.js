@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import './Card.css';
 
 class Card extends Component {
+	state = {
+		title: this.props.title,
+		text: this.props.text,
+	}
+
 	render() {
-		const { title, text } = this.props;
+		let { title, text } = this.state;
+
 		return (
 			<div className="card">
-				<h2>{ title }</h2>
+				<h2 onClick={ this.handleH2Click }>{ title }</h2>
 				<p>{ text }</p>
 				<div className="comments">
 					{ this.comments() }
 				</div>
 			</div>
 		);
+	}
+
+	handleH2Click = () => {
+		this.setState({
+			title: "You Clicked Me :o",
+		});
 	}
 
 	comments = () => {
