@@ -1,5 +1,5 @@
 # Communicate
-#### Made by `@bradleykenny`
+#### Made by [`@bradleykenny`](http://github.com/bradleykenny)
 
 This is some sort of social network connecting to some Internet databases. 
 
