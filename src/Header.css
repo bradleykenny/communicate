@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
+header {
+	padding: 10px 40px;
+	background-color: #1BA0F2;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	position: fixed;
+	width: 100%;
+}
+
+header > h1 {
+	font-family: 'Comfortaa';
+	letter-spacing: -2px;
+}
+
+header > h1 > a {
+	color: white;
+	text-decoration: none;
+}
+
+header > p > a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	margin-right: 25px;
+	transition: ease 0.25s;
+}
+
+header > p > a:hover, header > p > a:focus {
+	color: rgba(255,255,255,0.8);
+}
