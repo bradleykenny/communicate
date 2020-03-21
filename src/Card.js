@@ -13,7 +13,7 @@ class Card extends Component {
 		return (
 			<div className="card">
 				<h2 onClick={ this.handleH2Click }>{ title }</h2>
-				<p>{ text }</p>
+				<p onClick={ this.handlePClick }>{ text }</p>
 				<div className="comments">
 					{ this.comments() }
 				</div>
@@ -24,6 +24,12 @@ class Card extends Component {
 	handleH2Click = () => {
 		this.setState({
 			title: "You Clicked Me :o",
+		});
+	}
+
+	handlePClick = () => {
+		this.setState({
+			text: "Clicked me... :/",
 		});
 	}
 
