@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Header from './Header';
-import Card from './Card';
+import Card, { CreatePost } from './Card';
 
-class App extends Component {	
+class App extends Component {
+	state = {
+		cards: [], // for later ...
+	}
+
 	createCards = () => {
 		let elements = [];
 		for (let i = 0; i < 20; i++) {
@@ -18,6 +22,7 @@ class App extends Component {
 			<div className="App">
 				<Header />
 				<div className="cards">
+					<CreatePost />
 					{ this.createCards() }
 				</div>
 			</div>

@@ -40,4 +40,19 @@ class Card extends Component {
 	}
 }
 
+export class CreatePost extends Component {
+	render() {
+		return (
+			<div id="createPost">
+				<div className="card">
+					<form>
+						<input type="text" placeholder="What do you want to say?" />
+						<button>Submit</button>
+					</form>
+				</div>
+			</div>
+		);
+	}
+}
+
 export default Card;
