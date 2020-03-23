@@ -1,7 +1,12 @@
-body {
-	background-color: rgba(0,0,0,0.1);
+.app {
+	height: 100%;
 }
 
-.cards {
-	padding-top: 130px;
+body {
+	background-color: rgba(0,0,0,0.1);
+	height: 100%;
+}
+
+.main {
+	padding-top: 140px;
 }

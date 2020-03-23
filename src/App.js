@@ -3,6 +3,7 @@ import './App.css';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
+import LeftSidebar from './LeftSidebar';
 
 class App extends Component {
 	state = {
@@ -19,9 +20,10 @@ class App extends Component {
 	
 	render() {
 		return (
-			<div className="App">
+			<div className="app">
 				<Header />
-				<div className="cards">
+				<div className="main">
+					<LeftSidebar />
 					<CreatePost />
 					{ this.createCards() }
 				</div>
