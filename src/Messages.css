@@ -32,6 +32,10 @@
 	font-size: 16px;
 }
 
+.innerCard > h2, #time {
+	display: inline-block;
+}
+
 .innerCard > h3 {
 	font-weight: normal;
 }
@@ -45,4 +49,8 @@
 
 #messages:last-child {
 	border-bottom: 1px solid #cdcdcd;
+}
+
+#time {
+	float: right;
 }
