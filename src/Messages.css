@@ -1,0 +1,23 @@
+#leftSidebar {
+	width: 340px;
+	background-color: white;
+	color: black;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	margin-top: 20px;
+	position: fixed;
+	padding: 20px 0px;
+	overflow: scroll;
+
+	margin-top: -160px;
+	padding-top: 160px;
+	height: 100%;
+}
+
+.innerCard {
+	border-top: 1px solid #cdcdcd;
+	padding: 10px 40px;
+}
+
+#messages:last-child {
+	border-bottom: 1px solid #cdcdcd;
+}

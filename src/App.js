@@ -3,7 +3,7 @@ import './App.css';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
-import LeftSidebar from './LeftSidebar';
+import Messages from './Messages';
 
 class App extends Component {
 	state = {
@@ -22,10 +22,15 @@ class App extends Component {
 		return (
 			<div className="app">
 				<Header />
+				<div id="headerSpacer"></div>
 				<div className="main">
-					<LeftSidebar />
-					<CreatePost />
-					{ this.createCards() }
+					<Messages />
+					<div id="rightSide">
+						<CreatePost />
+						<div id="cards">
+							{ this.createCards() }
+						</div>
+					</div>
 				</div>
 			</div>
 		);
