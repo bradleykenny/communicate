@@ -1,11 +1,11 @@
 #leftSidebar {
-	width: 340px;
+	width: 380px;
 	background-color: white;
 	color: black;
 	box-shadow: 0 0 10px rgba(0,0,0,0.3);
 	margin-top: 20px;
 	position: fixed;
-	padding: 20px 0px;
+	padding: 20px 0px;  
 	overflow: scroll;
 
 	margin-top: -160px;
@@ -16,6 +16,31 @@
 .innerCard {
 	border-top: 1px solid #cdcdcd;
 	padding: 10px 40px;
+	height: 100px;
+	
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	
+	cursor: pointer;
+}
+
+.innerCard > h2, .innerCard > h3 {
+	margin: 5px 0px 0px;
+	font-size: 16px;
+}
+
+.innerCard > h3 {
+	font-weight: normal;
+}
+
+.innerCard > p {
+	margin: 5px 0px 0px;
+	color: #454545;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 #messages:last-child {
