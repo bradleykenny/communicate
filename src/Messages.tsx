@@ -40,7 +40,7 @@ class Messages extends Component {
 class Message extends Component {
 	render() {
 		return (
-			<div class="innerCard">
+			<div className="innerCard">
 				<h2>Some Person</h2>
 				<p id="time">8:08pm</p>
 				<h3>Title</h3>

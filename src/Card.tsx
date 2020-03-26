@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Card.css';
 
-class Card extends Component {
+class Card extends Component<{ title: string, text: string}> {
 	state = {
 		title: this.props.title,
 		text: this.props.text,
