@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import './Card.css';
 
-class Card extends Component<{ title: string, text: string}> {
+type CardProps = {
+	title: string,
+	text?: string, // text is optional
+}
+
+type CardState = {
+	title: string,
+	text?: string, // text is optional
+}
+
+class Card extends Component<CardProps, CardState> {
 	state = {
 		title: this.props.title,
 		text: this.props.text,

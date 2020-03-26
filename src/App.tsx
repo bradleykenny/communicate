@@ -5,7 +5,11 @@ import Header from './Header';
 import Card, { CreatePost } from './Card';
 import Messages from './Messages';
 
-class App extends Component<{}, { cards: Array<string> }> {
+type AppState = {
+	cards: Array<string>,
+}
+
+class App extends Component<{}, AppState> {
 	
 	constructor(props: any) {
 		super(props);
