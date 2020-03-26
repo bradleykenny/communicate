@@ -5,9 +5,13 @@ import Header from './Header';
 import Card, { CreatePost } from './Card';
 import Messages from './Messages';
 
-class App extends Component {
-	state = {
-		cards: [], // for later ...
+class App extends Component<{}, { cards: Array<string> }> {
+	
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			cards: [], // for later ...
+		}
 	}
 
 	createCards = () => {
