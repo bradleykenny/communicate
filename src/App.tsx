@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style/App.css';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
@@ -20,7 +20,7 @@ class App extends Component<{}, AppState> {
 
 	createCards = () => {
 		let elements = [];
-		for (let i = 0; i < 20; i++) {
+		for (let i = 0; i < 1; i++) {
 			elements.push(<Card title="Header" text="Paragraph" />);
 		}
 		return elements;
@@ -34,7 +34,7 @@ class App extends Component<{}, AppState> {
 				<div className="main">
 					<Messages />
 					<div id="rightSide">
-						<CreatePost />
+						{/* <CreatePost /> */}
 						<div id="cards">
 							{ this.createCards() }
 						</div>

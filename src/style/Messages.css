@@ -1,5 +1,5 @@
 #leftSidebar {
-	width: 380px;
+	width: 28%;
 	background-color: white;
 	color: black;
 	box-shadow: 0 0 10px rgba(0,0,0,0.3);
@@ -42,7 +42,7 @@
 
 .innerCard > p {
 	margin: 5px 0px 0px;
-	color: #454545;
+	color: #757575;
 	text-overflow: ellipsis;
 	overflow: hidden;
 }

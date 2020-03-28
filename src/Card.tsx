@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Card.css';
+import './style/Card.css';
 
 type CardProps = {
 	title: string,
