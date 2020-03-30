@@ -16,15 +16,15 @@
 .innerCard {
 	border-top: 1px solid #cdcdcd;
 	padding: 10px 40px;
-	height: 100px;
-	
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	height: 115px;
 	width: 100%;
-	display: block;
-	overflow: hidden;
-	
 	cursor: pointer;
+
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .innerCard > h2, .innerCard > h3 {

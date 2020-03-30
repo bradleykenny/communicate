@@ -4,6 +4,7 @@ import './style/App.css';
 import Header from './Header';
 import Card, { CreatePost } from './Card';
 import Messages from './Messages';
+import Modal from './Modal';
 
 type AppState = {
 	cards: Array<string>,
@@ -32,6 +33,7 @@ class App extends Component<{}, AppState> {
 				<Header />
 				<div id="headerSpacer"></div>
 				<div className="main">
+					<Modal />
 					<Messages />
 					<div id="rightSide">
 						{/* <CreatePost /> */}
