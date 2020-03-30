@@ -11,6 +11,8 @@ class Header extends Component {
 				<p>
 					<a href="/">Home</a>
 					<a href="/">Profile</a>
+					<a href="/">Groups</a>
+					<a href="/">Settings</a>
 				</p>
 			</header>
 		);
