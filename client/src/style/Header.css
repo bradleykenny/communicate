@@ -2,7 +2,8 @@
 
 header {
 	padding: 10px 40px;
-	background-color: #1BA0F2;
+	background-color: rgba(27,123,242,1);
+	/* background: linear-gradient(0deg, rgba(27,123,242,1) 0%, rgba(27,160,242,1) 100%); */
 	box-shadow: 0 0 5px rgba(0,0,0,0.3);
 	position: fixed;
 	width: 100%;
