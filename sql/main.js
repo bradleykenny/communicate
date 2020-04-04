@@ -4,7 +4,7 @@ const uuid = require('uuid');
 
 require('dotenv').config();
 
-const connection = mysql.createConnection({
+export const connection = mysql.createConnection({
 	host: process.env.GSQL_HOST,
 	user: process.env.GSQL_USER,
 	password: process.env.GSQL_PASS,
