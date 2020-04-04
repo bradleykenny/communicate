@@ -4,7 +4,7 @@ const uuid = require('uuid');
 
 require('dotenv').config();
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
 	host: process.env.GSQL_HOST,
 	user: process.env.GSQL_USER,
 	password: process.env.GSQL_PASS,
@@ -12,15 +12,6 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-	if (error) throw error;
-	console.log('The solution is:', results[0].solution);
-});
-
-let userId = 1;
-let sql = sqlstring.format('SELECT * FROM users WHERE id = ?', [ userId ]);
-console.log(sql);
 
 function insertUser(username, firstName, lastName) {
 	const str = "INSERT INTO Accounts (_id, username, firstName, lastName) VALUES (?, ?, ?, ?);";

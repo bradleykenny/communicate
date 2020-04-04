@@ -18,14 +18,6 @@ class App extends Component<{}, AppState> {
 			cards: [], // for later ...
 		}
 	}
-
-	createCards = () => {
-		let elements = [];
-		for (let i = 0; i < 1; i++) {
-			elements.push(<Card title="Header" text="Paragraph" />);
-		}
-		return elements;
-	};
 	
 	render() {
 		return (
@@ -38,7 +30,7 @@ class App extends Component<{}, AppState> {
 					<div id="rightSide">
 						{/* <CreatePost /> */}
 						<div id="cards">
-							{ this.createCards() }
+							<Card />
 						</div>
 					</div>
 				</div>

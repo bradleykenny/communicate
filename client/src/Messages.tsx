@@ -1,43 +1,34 @@
 import React, { Component } from 'react';
 import './style/Messages.css';
 
+type MessageState = {
+	sender: string,
+	time: string,
+	title: string,
+	text: string,
+}
+
 class Messages extends Component {
+	genMessages = () => {
+		let elements = [];
+		for (let i = 0; i < 20; i++) {
+			elements.push(<Message />);
+		}
+		return elements;
+	};
+
 	render() {
 		return (
 			<div id="leftSidebar">
 				<div id="messages">
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
-					<Message />
+					{ this.genMessages() }
 				</div>
 			</div>
 		);
 	}
 }
 
-class Message extends Component {
+class Message extends Component<{ }, MessageState> {
 	state = {
 		sender: 'Bradley Kenny',
 		time: '8:08pm',
