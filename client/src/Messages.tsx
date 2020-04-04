@@ -63,7 +63,6 @@ class Message extends Component {
 				<p id="time">{ time }</p>
 				<h3 onClick={ this.changeTitle }>{ title }</h3>
 				<p onClick={ this.getter }>{ text }</p>
-				<p></p>
 			</div>
 		);
 	}
