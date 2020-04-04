@@ -1,7 +1,6 @@
 const mysql = require('mysql');
 const sqlstring = require('sqlstring');
 const uuid = require('uuid');
-// import { v4 as uuidv4 } from 'uuid';
 
 require('dotenv').config();
 
@@ -23,15 +22,15 @@ let userId = 1;
 let sql = sqlstring.format('SELECT * FROM users WHERE id = ?', [ userId ]);
 console.log(sql);
 
-function insertInto(username, firstName, lastName) {
+function insertUser(username, firstName, lastName) {
 	const str = "INSERT INTO Accounts (_id, username, firstName, lastName) VALUES (?, ?, ?, ?);";
-	let query = sqlstring.format(str, [ uuid.v4(), username, firstName, lastName ]);
-	connection.query(query, function(err, results, fields) {
+	let safeQuery = sqlstring.format(str, [ uuid.v4(), username, firstName, lastName ]);
+	connection.query(safeQuery, function(err, results, fields) {
 		if (err) throw err;
-		console.log("Entered!!");
+		console.log(`Inserted user \'${ username }\' into the table.`);
 	})
 }
 
-insertInto("bradleykenny", "Bradley", "Kenny");
+insertUser("bradleykenny", "Bradley", "Kenny");
 
 connection.end();
