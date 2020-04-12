@@ -1,8 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+import express from 'express';
+import bodyParser from 'body-parser';
+import path from 'path';
 
-const AccountsTable = require('./sql/accounts');
+import AccountsTable from './sql/accounts';
 
 require('dotenv').config();
 
