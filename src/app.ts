@@ -14,18 +14,18 @@ app.set("port", process.env.PORT || 5000);
 
 // app.use(express.static(path.join(__dirname, 'build')));
 
+app.get('/', function (req: any, res: any) {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // Test route to ensure up and running
 app.get('/ping', (req: any, res: any) => {
  	return res.send('pong');
 });
 
-// Other routes...
-app.get('/', function (req: any, res: any) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 app.get('/sql', (req: any, res: any) => {
 	AccountsTable.insertUser("bradleyk", "Brad", "Kenny");
+	return res.send("Inserted user.")
 });
 
 app.listen(
