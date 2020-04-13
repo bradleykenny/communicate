@@ -3,7 +3,7 @@ import mysql from 'mysql';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class AccountsTable {
-	static insertUser = function (username: string, firstName: string, lastName: string): void {
+	static insertUser (username: string, firstName: string, lastName: string): void {
 		const query = "INSERT INTO Accounts (_id, username, firstName, lastName) VALUES (?, ?, ?, ?);";
 		connection.query(
 			query, 

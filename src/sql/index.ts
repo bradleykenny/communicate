@@ -1,5 +1,4 @@
 import mysql from 'mysql';
-import AccountsTable from './accounts';
 
 export const connection = mysql.createConnection({
 	host: process.env.GSQL_HOST,
@@ -8,16 +7,15 @@ export const connection = mysql.createConnection({
 	database: 'communication',
 });
 	
-	connection.connect((error) => {
+connection.connect((error) => {
 	if (error) {
-		console.error('Error connecting: ' + error);
+		console.error(this);
+		console.error(error);
 		return;
 	}
 
 	console.log('Connected as ID #' + connection.threadId);
 });
-
-AccountsTable.insertUser("bradleykenny", "Bradley", "Kenny");
 
 process.on('SIGINT', () => {
 	connection.end(() => {

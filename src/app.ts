@@ -1,10 +1,10 @@
+require('dotenv').config();
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 
 import AccountsTable from './sql/accounts';
-
-require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ app.get('/', function (req: any, res: any) {
 });
 
 app.get('/sql', (req: any, res: any) => {
-	res.send(AccountsTable.insertUser("bradleyk", "Brad", "Kenny"));
+	AccountsTable.insertUser("bradleyk", "Brad", "Kenny");
 });
 
 app.listen(
