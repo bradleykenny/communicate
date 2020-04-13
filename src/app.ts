@@ -30,9 +30,11 @@ app.get('/', function (req: any, res: any) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.get('/add', (req: any, res: any) => {
-	AccountsTable.insertUser("bradleyk", "Brad", "Kenny");
-	return res.send("Inserted user.")
+app.post('/add/user', (req: any, res: any) => {
+	const { username, firstName, lastName } = req.body;
+	console.log(req.body);
+	AccountsTable.insertUser(username, firstName, lastName);
+	return res.send("Inserted user.");
 });
 
 app.get('/get', (req: any, res: any) => {

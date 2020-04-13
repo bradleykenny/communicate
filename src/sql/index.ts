@@ -9,7 +9,6 @@ export const connection = mysql.createConnection({
 	
 connection.connect((error) => {
 	if (error) {
-		console.error(this);
 		console.error(error);
 		return;
 	}
