@@ -14,23 +14,34 @@ app.set("port", process.env.PORT || 5000);
 
 // app.use(express.static(path.join(__dirname, 'build')));
 
+// Test routes to ensure up and running
+
+app.get('/test', (req: any, res: any) => {
+	return res.send('test');
+});
+
+app.get('/ping', (req: any, res: any) => {
+	return res.send('pong');
+});
+
+// Other routes
+
 app.get('/', function (req: any, res: any) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// Test route to ensure up and running
-app.get('/ping', (req: any, res: any) => {
- 	return res.send('pong');
-});
-
-app.get('/sql', (req: any, res: any) => {
+app.get('/add', (req: any, res: any) => {
 	AccountsTable.insertUser("bradleyk", "Brad", "Kenny");
 	return res.send("Inserted user.")
 });
 
-app.listen(
-	5000, 
-	() => { console.log(`server running on port : ${ 5000 }`); }
-).on('error', (e: object) => console.error(e));
+app.get('/get', (req: any, res: any) => {
+	AccountsTable.getUser("bradleyk");
+	return res.send("Asynchronously getting user...");
+});
 
-export default app;
+// ... And listen
+app.listen(
+	app.get("port"), 
+	() => { console.log(`Server running on port ${ app.get("port") }`); }
+).on('error', (e: object) => console.error(e));

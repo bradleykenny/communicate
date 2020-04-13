@@ -4,7 +4,7 @@
 	"type": "commonjs",
 	"main": "build/app.js",
 	"scripts": {
-		"start": "concurrently --kill-others-on-fail \"npm run build && node build/app.js\" \"cd client && npm start\"",
+		"start": "concurrently --kill-others-on-fail \"npm run build && node build/server.js\" \"cd client && npm start\"",
 		"build": "tsc",
 		"backend": "npm run build && node build/app.js",
 		"frontend": "cd client && npm start"

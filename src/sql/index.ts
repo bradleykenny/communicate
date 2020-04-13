@@ -17,15 +17,9 @@ connection.connect((error) => {
 	console.log('Connected as ID #' + connection.threadId);
 });
 
-// This function contains code to terminate connection to the MySQL. 
-// If not in function, terminates too early.
-function quitter() { 
-	process.on('SIGINT', () => {
-		connection.end(() => {
-			console.log("MySQL connection closed.");
-			process.exit(0);
-		});
-	})
-
-	connection.end();
-}
+process.on('SIGINT', () => {
+	connection.end(() => {
+		console.log(`MySQL connection #${ connection.threadId } closed.`);
+		process.exit(0);
+	});
+});

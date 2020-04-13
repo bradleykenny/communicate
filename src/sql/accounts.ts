@@ -15,8 +15,8 @@ export default class AccountsTable {
 		);
 	};
 
-	static getUser = function (username: string): object {
-		const query = "SELECT * FROM accounts WHERE username='?'";
+	static getUser (username: string): object {
+		const query = "SELECT * FROM Accounts WHERE username=?";
 		connection.query(
 			query, 
 			[ username ], 
