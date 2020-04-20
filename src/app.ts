@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 
 import AccountsTable from './sql/accounts';
-import Authentication from './sql/authentication';
+import AuthenticationTable from './sql/authentication';
 
 const app = express();
 app.use(bodyParser.json());
@@ -52,7 +52,7 @@ app.get('/get/user', async (req: any, res: any) => {
 });
 
 app.get('/login', (req: any, res: any) => {
-	Authentication.login("bradleyk", "password");
+	AuthenticationTable.login("bradleyk", "password");
 	return res.send("Logging in...");
 });
 

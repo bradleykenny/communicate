@@ -2,6 +2,8 @@ import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 
 export default class AccountsTable {
+	
+	// Insert a user into the Accounts table
 	static insertUser (username: string, firstName: string, lastName: string): void {
 		const query = `
 			INSERT INTO Accounts (uid, username) VALUES (?, ?); 
@@ -18,6 +20,7 @@ export default class AccountsTable {
 		);
 	};
 
+	// Get a user from the Accounts table based on `username`
 	static getUser (username: string): Promise<Object> {
 		const query = "SELECT * FROM Accounts WHERE username=?";
 		return new Promise((resolve: any) => {
@@ -31,4 +34,5 @@ export default class AccountsTable {
 			)
 		});
 	};
+	
 };
