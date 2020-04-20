@@ -1,13 +1,12 @@
 import { connection } from './index';
-import mysql from 'mysql';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export default class AccountsTable {
 	static insertUser (username: string, firstName: string, lastName: string): void {
 		const query = "INSERT INTO Accounts (_id, username, firstName, lastName) VALUES (?, ?, ?, ?);";
 		connection.query(
 			query, 
-			[ uuidv4(), username, firstName, lastName ],
+			[ uuid(), username, firstName, lastName ],
 			(error: any, results: any, fields: any) => {
 				if (error) throw error;
 				console.log(`Inserted user \'${ username }\' into the table.`);
