@@ -7,7 +7,7 @@ export default class AccountsTable {
 		connection.query(
 			query, 
 			[ uuid(), username, firstName, lastName ],
-			(error: any, results: any, fields: any) => {
+			(error: any, results: any) => {
 				if (error) throw error;
 				console.log(`Inserted user \'${ username }\' into the table.`);
 			}
@@ -20,8 +20,9 @@ export default class AccountsTable {
 			connection.query(
 				query, 
 				[ username ], 
-				function(err, rows){                                                
-					resolve(rows);
+				(error: any, results: any) => {
+					if (error) throw error;
+					resolve(results);
 				}
 			)
 		});
