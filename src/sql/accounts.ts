@@ -14,18 +14,16 @@ export default class AccountsTable {
 		);
 	};
 
-	static getUser (username: string): object {
+	static getUser (username: string): Promise<Object> {
 		const query = "SELECT * FROM Accounts WHERE username=?";
-		connection.query(
-			query, 
-			[ username ], 
-			(error: any, results: any, fields: any) => {
-				if (error) throw error;
-				console.log(`Found ${ username }.`);
-				return results;
-			}
-		);
-
-		return { };
+		return new Promise((resolve, reject) => {
+			connection.query(
+				query, 
+				[ username ], 
+				function(err, rows){                                                
+					resolve(rows);
+				}
+			)
+		});
 	};
 };

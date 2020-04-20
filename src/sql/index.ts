@@ -7,7 +7,7 @@ export const connection = mysql.createConnection({
 	database: 'communication',
 });
 	
-connection.connect((error) => {
+connection.connect(async (error) => {
 	if (error) {
 		console.error(error);
 		return;

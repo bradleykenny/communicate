@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 
 import AccountsTable from './sql/accounts';
+import Authentication from './sql/authentication';
 
 const app = express();
 app.use(bodyParser.json());
@@ -37,9 +38,22 @@ app.post('/add/user', (req: any, res: any) => {
 	return res.send("Inserted user.");
 });
 
-app.get('/get', (req: any, res: any) => {
-	AccountsTable.getUser("bradleyk");
-	return res.send("Asynchronously getting user...");
+app.get('/get/user', async (req: any, res: any) => {
+	try {
+		let result = await AccountsTable.getUser(req.body.username)
+			.then((results) => {
+				return results;
+			}
+		);
+		return res.send(result);
+	} catch(err) {
+		console.log(err);
+	}
+});
+
+app.get('/login', (req: any, res: any) => {
+	Authentication.login("bradleyk", "password");
+	return res.send("Logging in...");
 });
 
 // ... And listen
