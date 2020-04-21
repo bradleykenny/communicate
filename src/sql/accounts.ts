@@ -31,7 +31,7 @@ export default class AccountsTable {
 					if (error) throw error;
 					resolve(results);
 				}
-			)
+			);
 		});
 	};
 	
