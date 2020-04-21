@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 
 import AccountsTable from './sql/accounts';
-import AuthenticationTable from './sql/authentication';
+import Authentication from './sql/authentication';
 
 const app = express();
 app.use(bodyParser.json());
@@ -33,7 +33,6 @@ app.get('/', function (req: any, res: any) {
 
 app.post('/add/user', (req: any, res: any) => {
 	const { username, firstName, lastName } = req.body;
-	console.log(req.body);
 	AccountsTable.insertUser(username, firstName, lastName);
 	return res.send("Inserted user.");
 });
@@ -52,8 +51,14 @@ app.get('/get/user', async (req: any, res: any) => {
 });
 
 app.get('/login', (req: any, res: any) => {
-	AuthenticationTable.login("bradleyk", "password");
+	Authentication.login("bradleyk", "password");
 	return res.send("Logging in...");
+});
+
+app.post('/register', (req: any, res: any) => {
+	const { username, password, firstName, lastName } = req.body;
+	Authentication.register(username, password, firstName, lastName);
+	return res.send("Inserted user.");
 });
 
 // ... And listen

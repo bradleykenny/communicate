@@ -4,21 +4,39 @@ import bcrypt from 'bcrypt';
 
 export default class AuthenticationTable {
 	static login(username: string, password: string): boolean {
+		const query = "SELECT * FROM Accounts WHERE username = ?";
+		connection.query(
+			query,
+			[username],
+			(error: any, results: any) => {
+				if (error) throw error;
+				const dbPassword = results[0].password;
+				bcrypt.compare(password, dbPassword, (error: any, result: any) => {
+					if (error) throw error;
+					if (result === true) return true;
+					return false;
+				});
+			}
+		);
+
 		return true;
 	}
 
-	static async register(username: string, password: string): Promise<Object> {
-		const encryptedPassword = await bcrypt.hash(password, 10)
-		let users = {
-			"username": username,
-			"password": encryptedPassword
-		}
-		
-		return new Promise((resolve: any) => {
-			connection.query('INSERT INTO Accounts SET ?', users, (error: any, results: any, fields: any) => {
-				if (error) return false;
-				return true;
-			});
+	static register (username: string, password: string, firstName: string, lastName: string): void {
+		const query = `
+			INSERT INTO Accounts (uid, username, password) VALUES (?, ?, ?); 
+			INSERT INTO Profiles (uid, firstName, lastName) VALUES (?, ?, ?);
+		`
+		const uid = uuid();
+		bcrypt.hash(password, 10).then((encryptedPassword) => {
+			connection.query(
+				query, 
+				[ uid, username, encryptedPassword, uid, firstName, lastName ],
+				(error: any, results: any) => {
+					if (error) throw error;
+					console.log(`Inserted user \'${ username }\' into the table.`);
+				}
+			);
 		});
 	}
 };
