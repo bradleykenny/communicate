@@ -3,23 +3,23 @@ import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
 
 export default class AuthenticationTable {
-	static login(username: string, password: string): boolean {
-		const query = "SELECT * FROM Accounts WHERE username = ?";
-		connection.query(
-			query,
-			[username],
-			(error: any, results: any) => {
-				if (error) throw error;
-				const dbPassword = results[0].password;
-				bcrypt.compare(password, dbPassword, (error: any, result: any) => {
+	
+	static login(username: string, password: string): Promise<Object> {
+		const query = "SELECT * FROM Accounts WHERE username=?";
+		return new Promise((resolve: any) => {
+			connection.query(
+				query,
+				[ username ],
+				(error: any, results: any) => {
 					if (error) throw error;
-					if (result === true) return true;
-					return false;
-				});
-			}
-		);
-
-		return true;
+					const dbPassword = results[0].password;
+					bcrypt.compare(password, dbPassword, (error: any, result: any) => {
+						if (error) throw error;
+						resolve(result);
+					});
+				}
+			);
+		});
 	}
 
 	static register (username: string, password: string, firstName: string, lastName: string): void {

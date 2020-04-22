@@ -42,17 +42,23 @@ app.get('/get/user', async (req: any, res: any) => {
 		let result = await AccountsTable.getUser(req.body.username)
 			.then((results) => {
 				return results;
-			}
-		);
+			});
 		return res.send(result);
 	} catch(err) {
 		console.log(err);
 	}
 });
 
-app.get('/login', (req: any, res: any) => {
-	Authentication.login("bradleyk", "password");
-	return res.send("Logging in...");
+app.get('/login', async (req: any, res: any) => {
+	try {
+		let result = await Authentication.login(req.body.username, req.body.password)
+			.then((results) => {
+				return results;
+			});
+		return res.send(result);
+	} catch(err) {
+		console.log(err);
+	}
 });
 
 app.post('/register', (req: any, res: any) => {
