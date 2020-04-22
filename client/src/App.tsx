@@ -1,42 +1,38 @@
 import React, { Component } from 'react';
 import './style/App.css';
 
-import Header from './Header';
-import Card, { CreatePost } from './Card';
-import Messages from './Messages';
-import Modal from './Modal';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from "react-router-dom";
 
-type AppState = {
-	cards: Array<string>,
-}
+import Home from './Home';
+import Login from './Login';
 
-class App extends Component<{}, AppState> {
-	
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			cards: [], // for later ...
-		}
-	}
-	
+class App extends Component<{}, {}> {	
 	render() {
 		return (
-			<div className="app">
-				<Header />
-				<div id="headerSpacer"></div>
-				<div className="main">
-					<Modal />
-					<Messages />
-					<div id="rightSide">
-						{/* <CreatePost /> */}
-						<div id="cards">
-							<Card />
-						</div>
-					</div>
-				</div>
-			</div>
+			<Router>
+				<Switch>
+					<Route path="/about">
+						<About />
+					</Route>
+					<Route path="/login">
+						<Login />
+					</Route>
+					<Route path="/">
+						<Home />
+					</Route>
+				</Switch>
+			</Router>
 		);
 	}
+}
+
+function About() {
+	return <h1>About</h1>;
 }
 
 export default App;
