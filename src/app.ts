@@ -31,6 +31,8 @@ app.get('/', function (req: any, res: any) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// Account routes
+
 app.post('/add/user', (req: any, res: any) => {
 	const { username, firstName, lastName } = req.body;
 	AccountsTable.insertUser(username, firstName, lastName);
@@ -48,6 +50,8 @@ app.get('/get/user', async (req: any, res: any) => {
 		console.log(err);
 	}
 });
+
+// Authentication routes
 
 app.get('/login', async (req: any, res: any) => {
 	try {
@@ -67,7 +71,8 @@ app.post('/register', (req: any, res: any) => {
 	return res.send("Inserted user.");
 });
 
-// ... And listen
+// ... And finally listen
+
 app.listen(
 	app.get("port"), 
 	() => { console.log(`Server running on port ${ app.get("port") }`); }
