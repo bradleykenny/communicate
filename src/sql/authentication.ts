@@ -12,11 +12,15 @@ export default class AuthenticationTable {
 				[ username ],
 				(error: any, results: any) => {
 					if (error) throw error;
-					const dbPassword = results[0].password;
-					bcrypt.compare(password, dbPassword, (error: any, result: any) => {
-						if (error) throw error;
-						resolve(result);
-					});
+					if (results[0] !== undefined) {
+						const dbPassword = results[0].password;
+						bcrypt.compare(password, dbPassword, (error: any, result: any) => {
+							if (error) throw error;
+							resolve(result);
+						});
+					} else {
+						resolve(false);
+					}
 				}
 			);
 		});

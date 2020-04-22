@@ -16,7 +16,7 @@
 	margin-top: 20px;
 }
 
-.card > .comments > input[type="text"], .card > form > input[type="text"] {
+.card > .comments > input[type="text"], .card > form > input[type="text"], .card > form > input[type="password"] {
 	padding: 10px 10px;
 	outline: none;
 	border: 0px solid #a1a1a1;

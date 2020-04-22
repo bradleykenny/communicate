@@ -3,6 +3,7 @@ require('dotenv').config();
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors';
 
 import AccountsTable from './sql/accounts';
 import Authentication from './sql/authentication';
@@ -10,10 +11,9 @@ import Authentication from './sql/authentication';
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.set("port", process.env.PORT || 5000);
-
-// app.use(express.static(path.join(__dirname, 'build')));
 
 // Test routes to ensure up and running
 
@@ -53,13 +53,14 @@ app.get('/get/user', async (req: any, res: any) => {
 
 // Authentication routes
 
-app.get('/login', async (req: any, res: any) => {
+app.post('/auth', async (req: any, res: any) => {
 	try {
+		console.log(req.body);
 		let result = await Authentication.login(req.body.username, req.body.password)
 			.then((results) => {
 				return results;
 			});
-		return res.send(result);
+		res.send(result);
 	} catch(err) {
 		console.log(err);
 	}
