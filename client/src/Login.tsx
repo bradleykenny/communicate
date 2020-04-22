@@ -4,8 +4,6 @@ import axios from 'axios';
 import './style/Login.css';
 import './style/Card.css';
 
-import Card from './Card';
-
 type LoginState = {
 	values: string,
 	username: string,
@@ -17,7 +15,7 @@ class Login extends Component<{}, LoginState> {
 	constructor(props: {}) {
 		super(props);
 		this.state = {
-			values: "default",
+			values: "false",
 			username: "",
 			password: "",
 		}
@@ -28,7 +26,7 @@ class Login extends Component<{}, LoginState> {
 			<div className="app">
 				<div className="card">
 					<form>
-						<p>{ this.state.values }</p>
+						<p>correct? { this.state.values }</p>
 						<input type="text" placeholder="Username" value={ this.state.username } onChange={ this.handleUsernameChange }/>
 						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } />
 						<button onClick={ this.submitForm }>Submit</button>
