@@ -5,8 +5,8 @@ class Header extends Component {
 	render() {
 		return (
 			<header>
-				<h1>
-					<a href="/">communicate</a>
+				<h1 id="logo">
+					<a href="/" className="headerLogo">communicate</a>
 				</h1>
 				<p>
 					<a href="/">Home</a>

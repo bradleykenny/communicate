@@ -16,8 +16,10 @@
 	margin-top: 20px;
 }
 
-.card > .comments > input[type="text"], .card > form > input[type="text"], .card > form > input[type="password"] {
-	padding: 10px 10px;
+.card > .comments > input[type="text"], 
+.card > form > input[type="text"], 
+.card > form > input[type="password"] {
+	padding: 12.5px 10px;
 	outline: none;
 	border: 0px solid #a1a1a1;
 	background-color: rgba(0,0,0,0.1);
@@ -25,11 +27,23 @@
 	font-size: 16px;
 	width: 100%;
 	max-width: 480px;
+	transition: ease 0.25s;
+}
+ 
+.card > form > input[type="text"]:hover, 
+.card > form > input[type="password"]:hover {
+	background-color: rgba(0,0,0,0.15);
+}
+
+.card > form > input[type="text"]:focus, 
+.card > form > input[type="password"]:focus {
+	background-color: rgba(0,0,0,0.2);
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 button {
 	padding: 7.5px 12.5px;
-	background-color: #1BA0F2;
+	background-color: rgba(27,123,242,1);
 	color: white;
 	outline: none;
 	border-radius: 5px;
@@ -42,7 +56,7 @@ button {
 	float: right;
 }
 
-button:hover {
+button:hover, button:focus {
 	box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 

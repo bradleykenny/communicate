@@ -9,6 +9,7 @@
 		"sourceMap": true,
 		"outDir": "build",
 		"baseUrl": ".",
+		"removeComments": true,
 		"paths": {
 			"*": [
 				"node_modules/*",

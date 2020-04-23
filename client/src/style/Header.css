@@ -10,14 +10,8 @@ header {
 	z-index: 99999;
 }
 
-header > h1 {
-	font-family: 'Comfortaa';
-	letter-spacing: -2px;
-}
-
-header > h1 > a {
+.headerLogo {
 	color: white;
-	text-decoration: none;
 }
 
 header > p > a {

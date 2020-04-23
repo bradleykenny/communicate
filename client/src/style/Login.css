@@ -1,0 +1,32 @@
+#loginApp {
+	height: 100%;
+	width: 100%;
+	padding-top: 10%;
+	background: url('http://localhost:3000/login_background.png');
+}
+
+.loginCard {
+	max-width: 500px;
+	margin: auto auto;
+}
+
+.loginCard > form > input {
+	display: block;
+	margin-bottom: 15px;
+}
+
+.loginCard > form > p {
+	float: left;
+}
+
+.loginCard > form > p > a {
+	color: black;
+}
+
+.loginCard > form > button {
+	display: inline;
+}
+
+.loginLogo {
+	color: rgba(27,123,242,1);
+}

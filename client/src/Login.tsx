@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import './style/Login.css';
 import './style/Card.css';
+import './style/Login.css';
 
 type LoginState = {
 	values: string,
@@ -23,13 +23,17 @@ class Login extends Component<{}, LoginState> {
 
 	render() {
 		return (
-			<div className="app">
-				<div className="card">
+			<div id="loginApp">
+				<div className="card loginCard">
 					<form>
-						<p>correct? { this.state.values }</p>
-						<input type="text" placeholder="Username" value={ this.state.username } onChange={ this.handleUsernameChange }/>
-						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } />
-						<button onClick={ this.submitForm }>Submit</button>
+						<h1 id="logo">
+							<a href="/login" className="loginLogo">communicate</a>
+						</h1>
+						<input type="text" placeholder="Username" value={ this.state.username } onChange={ this.handleUsernameChange } tabIndex={1} />
+						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } tabIndex={2} />
+						<p><a href="/login">Already have an account?</a></p>
+						<button onClick={ this.submitForm } tabIndex={3}>Submit</button>
+						<br></br><br></br><br></br><p>correct? { this.state.values }</p>
 					</form>
 				</div>
 			</div>
