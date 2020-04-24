@@ -16,7 +16,8 @@
 }
 
 .loginCard > form > p {
-	float: left;
+	display: inline-block;
+	margin: 20px auto 15px 5px;
 }
 
 .loginCard > form > p > a {
@@ -25,6 +26,10 @@
 
 .loginCard > form > button {
 	display: inline;
+}
+
+.loginCard > form > h2 {
+	margin-left: 5px;
 }
 
 .loginLogo {
