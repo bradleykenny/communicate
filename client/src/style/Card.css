@@ -38,7 +38,7 @@
 
 .card > form > input[type="text"]:focus, 
 .card > form > input[type="password"]:focus {
-	background-color: rgba(0,0,0,0.2);
+	background-color: rgba(0,0,0,0.15);
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
