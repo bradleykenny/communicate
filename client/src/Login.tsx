@@ -31,9 +31,9 @@ class Login extends Component<{}, LoginState> {
 						</h1>
 						<input type="text" placeholder="Username" value={ this.state.username } onChange={ this.handleUsernameChange } tabIndex={1} />
 						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } tabIndex={2} />
-						<p><a href="/login">Already have an account?</a></p>
+						<p><a href="/register">Don't have an account with us?</a></p>
 						<button onClick={ this.submitForm } tabIndex={3}>Submit</button>
-						<br></br><br></br><br></br><p>correct? { this.state.values }</p>
+						{/* <br></br><br></br><br></br><p>correct? { this.state.values }</p> */}
 					</form>
 				</div>
 			</div>
@@ -51,7 +51,7 @@ class Login extends Component<{}, LoginState> {
  	submitForm = async (e: any) => {
 		e.preventDefault();
 		console.log(this.state);
-		let res = await axios.post("http://localhost:5000/auth", this.state);
+		let res = await axios.post("http://localhost:5000/login", this.state);
 		this.setState({ values: res.data.toString() });
 	}
 }

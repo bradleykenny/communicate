@@ -6,6 +6,7 @@
 	background-color: white;
 	width: auto;
 	max-width: 60%;
+	overflow: visible;
 }
 
 .card > h2 {
@@ -42,7 +43,7 @@
 }
 
 button {
-	padding: 7.5px 12.5px;
+	padding: 10px 15px;
 	background-color: rgba(27,123,242,1);
 	color: white;
 	outline: none;
@@ -61,5 +62,5 @@ button:hover, button:focus {
 }
 
 form {
-	overflow: auto;
+	overflow: auto; /* this needs to be `visible` so that input box shadow not cut off */
 }

@@ -53,7 +53,7 @@ app.get('/get/user', async (req: any, res: any) => {
 
 // Authentication routes
 
-app.post('/auth', async (req: any, res: any) => {
+app.post('/login', async (req: any, res: any) => {
 	try {
 		console.log(req.body);
 		let result = await Authentication.login(req.body.username, req.body.password)
