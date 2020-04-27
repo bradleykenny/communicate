@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import './style/Card.css';
 import './style/Login.css';
 
 type LoginState = {
-	values: string,
+	loggedin: string,
 	username: string,
 	password: string,
 }
@@ -15,7 +16,7 @@ class Login extends Component<{}, LoginState> {
 	constructor(props: {}) {
 		super(props);
 		this.state = {
-			values: "false",
+			loggedin: "",
 			username: "",
 			password: "",
 		}
@@ -33,7 +34,7 @@ class Login extends Component<{}, LoginState> {
 						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } tabIndex={2} />
 						<p><a href="/register">Don't have an account with us?</a></p>
 						<button onClick={ this.submitForm } tabIndex={3}>Submit</button>
-						{/* <br></br><br></br><br></br><p>correct? { this.state.values }</p> */}
+						<p>{ this.state.loggedin }</p>
 					</form>
 				</div>
 			</div>
@@ -49,10 +50,19 @@ class Login extends Component<{}, LoginState> {
 	}
 
  	submitForm = async (e: any) => {
-		e.preventDefault();
-		console.log(this.state);
-		let res = await axios.post("http://localhost:5000/login", this.state);
-		this.setState({ values: res.data.toString() });
+		 try {
+			e.preventDefault();
+			console.log(this.state);
+			let res = await axios.post("http://localhost:5000/login", this.state);
+			this.setState({ loggedin: "Correct credentials." });
+			if (res.data === true) {
+				
+			} else {
+				this.setState({ loggedin: "Incorrect username/password." })
+			}
+		} catch (e) {
+			console.log(e);
+		}
 	}
 }
 

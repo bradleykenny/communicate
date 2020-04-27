@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
 
 import './style/App.css';
 
@@ -8,6 +8,7 @@ import Register from './Register';
 import Home from './Home';
 
 class App extends Component<{}, {}> {	
+
 	render() {
 		return (
 			<Router>
