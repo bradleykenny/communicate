@@ -32,7 +32,9 @@ class Login extends Component<{}, LoginState> {
 						</h1>
 						<input type="text" placeholder="Username" value={ this.state.username } onChange={ this.handleUsernameChange } tabIndex={1} />
 						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } tabIndex={2} />
-						<p><a href="/register">Don't have an account with us?</a></p>
+						<p>
+							<a href="/register">Don't have an account with us?</a>
+						</p>
 						<button onClick={ this.submitForm } tabIndex={3}>Submit</button>
 						<p>{ this.state.loggedin }</p>
 					</form>
@@ -46,20 +48,21 @@ class Login extends Component<{}, LoginState> {
 	}
 
 	handlePasswordChange = (e: any) => {
+		console.log(typeof(e));
 		this.setState({ password: e.target.value });
 	}
 
  	submitForm = async (e: any) => {
 		 try {
 			e.preventDefault();
-			console.log(this.state);
-			let res = await axios.post("http://localhost:5000/login", this.state);
-			this.setState({ loggedin: "Correct credentials." });
+			console.log(process.env.REACT_APP_API);
+			let res = await axios.post(process.env.REACT_APP_API + "/login", this.state);
 			if (res.data === true) {
-				
+				this.setState({ loggedin: "Correct credentials." });
 			} else {
 				this.setState({ loggedin: "Incorrect username/password." })
 			}
+			console.log(this.state);
 		} catch (e) {
 			console.log(e);
 		}

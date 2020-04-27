@@ -72,7 +72,7 @@ class Register extends Component<{}, RegisterState> {
  	submitForm = async (e: any) => {
 		e.preventDefault();
 		console.log(this.state);
-		let res = await axios.post("http://localhost:5000/register", this.state);
+		let res = await axios.post(`${ process.env.REACT_APP_API }/register`, this.state);
 		this.setState({ values: res.data.toString() });
 	}
 }

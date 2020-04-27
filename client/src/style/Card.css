@@ -57,8 +57,13 @@ button {
 	float: right;
 }
 
-button:hover, button:focus {
+button:hover {
 	box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+button:focus {
+	box-shadow: 0 0 10px rgba(0,0,0,0.4);
+	background-color: rgb(14, 102, 209);
 }
 
 form {
