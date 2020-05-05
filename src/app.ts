@@ -5,8 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
 
-import AccountsTable from './sql/accounts';
-import Authentication from './sql/authentication';
+import { Accounts, Authentication } from './sql';
 
 const app = express();
 app.use(bodyParser.json());
@@ -35,14 +34,14 @@ app.get('/', function (req: any, res: any) {
 
 app.post('/add/user', (req: any, res: any) => {
 	const { username, firstName, lastName } = req.body;
-	AccountsTable.insertUser(username, firstName, lastName);
+	Accounts.insertUser(username, firstName, lastName);
 	return res.send("Inserted user.");
 });
 
 app.get('/get/user', async (req: any, res: any) => {
 	try {
-		let result = await AccountsTable.getUser(req.body.username)
-			.then((results) => {
+		let result = await Accounts.getUser(req.body.username)
+			.then((results: any) => {
 				return results;
 			});
 		return res.send(result);
@@ -57,7 +56,7 @@ app.post('/login', async (req: any, res: any) => {
 	try {
 		console.log(req.body);
 		let result = await Authentication.login(req.body.username, req.body.password)
-			.then((results) => {
+			.then((results: any) => {
 				return results;
 			});
 		res.send(result);

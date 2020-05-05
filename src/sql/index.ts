@@ -1,11 +1,13 @@
 import mysql from 'mysql';
 
+import AccountsTable from './accounts';
+import AuthenticationTable from './authentication';
+
 export const connection = mysql.createConnection({
 	host: process.env.GSQL_HOST,
 	user: process.env.GSQL_USER,
 	password: process.env.GSQL_PASS,
 	database: 'communication',
-	multipleStatements: true,
 });
 	
 connection.connect(async (error) => {
@@ -23,3 +25,6 @@ process.on('SIGINT', () => {
 		process.exit(0);
 	});
 });
+
+export const Accounts = AccountsTable;
+export const Authentication = AuthenticationTable;
