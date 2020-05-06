@@ -37,7 +37,7 @@ class Message extends Component<{ }, MessageState> {
 	}
 
 	getter = async () => {
-		const response = await fetch('/ping');
+		const response = await fetch(process.env.REACT_APP_API + '/ping');
 		const body = await response.text();
 		this.setState({ text: body });
 	};
