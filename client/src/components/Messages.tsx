@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/Messages.css';
+import '../style/Messages.css';
 
 type MessageState = {
 	sender: string,

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { loginRequest } from './actions/login';
+import { loginRequest } from '../actions/login';
 
-import './style/Card.css';
-import './style/Login.css';
+import '../style/Card.css';
+import '../style/Login.css';
 
 class Login extends Component<{}, {}> {
 

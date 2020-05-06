@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import './style/Card.css';
-import './style/Login.css';
+import '../style/Card.css';
+import '../style/Login.css';
 
 type RegisterState = {
 	values: string,
