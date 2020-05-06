@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { useHistory } from 'react-router-dom';
-
 import axios from 'axios';
 import { loginRequest } from './actions/login';
 
@@ -23,7 +21,6 @@ class Login extends Component<{}, {}> {
 							<a href="/register">Don't have an account with us?</a>
 						</p>
 						<button tabIndex={3}>Submit</button>
-						{/* <p>{ this.state.loggedin }</p> */}
 					</form>
 				</div>
 			</div>
