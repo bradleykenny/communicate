@@ -1,4 +1,5 @@
 import { loginUserService } from '../services/authenticationService';
+import { history } from'../services/history';
 
 interface LoginData {
 	username: string;
@@ -20,16 +21,15 @@ export type LoginAction =
 // Action creators
 
 export function login(username: string, password: string) {
-	
-	return (dispatch: any) => {
+    return (dispatch: any) => {
         dispatch(loginRequest({ username, password }));
 
         loginUserService(username, password)
             .then(
                 (user: UserData) => { 
-					console.log("get ready...");
-					console.log(user);
+					console.log(typeof user);
 					dispatch(loginSuccess(user));
+					history.push('/');
                 },
                 (error: string) => {
 					console.log(error);

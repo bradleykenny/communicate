@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
+import { Router, Switch, Route, useHistory } from "react-router-dom";
 
 import '../style/App.css';
+
+import { history } from '../services/history';
 
 import Login from './Login';
 import Register from './Register';
@@ -12,12 +14,16 @@ class App extends Component<{ dispatch: any }, {}> {
 	constructor(props: any) {
         super(props);
 
-        const { dispatch } = this.props;
+		const { dispatch } = this.props;
+		history.listen((location: any, action: any) => {
+			// clear alert on location change
+            
+        });
     }
 
 	render() {
 		return (
-			<Router>
+			<Router history={ history }>
 				<Switch>
 					<Route path="/login">
 						<Login />
