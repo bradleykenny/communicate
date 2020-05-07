@@ -2,7 +2,7 @@
 	height: 100%;
 	width: 100%;
 	padding-top: 10%;
-	background: url('http://localhost:3000/login_background.png');
+	background: url('/login_background.png');
 }
 
 .loginCard {

@@ -8,9 +8,7 @@ if (sid) {
 	user = axios.get(GETUSER_API_ENDPOINT).then(res => res.data); // want this to work in sync
 }
 
-const initialState = user ? { loggedIn: true, user } : {};
-
-export function authReducer(state = initialState, action: LoginAction) {
+export function authReducer(state = {}, action: LoginAction) {
 	switch (action.type) {
 		case "LOGIN_REQUEST":
 			return {

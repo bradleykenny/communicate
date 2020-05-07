@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import '../style/App.css';
 
 import Header from './Header';
@@ -12,15 +13,11 @@ type AppState = {
 }
 
 class Home extends Component<{ dispatch: any }, AppState> {
-
-	componentDidMount() {
-		// this.props.dispatch(userActions.getAll());
-    }
 	
 	render() {
 		return (
 			<div className="app">
-				<Header user={{ email: "bradkenny@gmail.com"}}/>
+				<Header user={{ email: "dummy@gmail.com" }}/>
 				<div id="headerSpacer"></div>
 				<div className="main">
 					<Modal />
