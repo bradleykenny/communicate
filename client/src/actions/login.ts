@@ -28,7 +28,6 @@ export function login(username: string, password: string) {
             .then(
                 (user: UserData) => { 
 					if (user) {
-						console.log(user);
 						dispatch(loginSuccess(user));
 						history.push('/');
 					} else {

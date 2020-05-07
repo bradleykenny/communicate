@@ -2,6 +2,8 @@ import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
 
+import Session from './sessions';
+
 export default class AuthenticationTable {
 	
 	static login(username: string, password: string): Promise<Object> {
@@ -17,7 +19,8 @@ export default class AuthenticationTable {
 						bcrypt.compare(password, dbPassword, (error: any, result: any) => {
 							if (error) throw error;
 							if (result === true) {
-								resolve({ username: username, email: results[0].email, profilePicture: results[0].profilePicture });
+								resolve(Session.createSession(results[0].uid));
+								//resolve({ username: username, email: results[0].email, profilePicture: results[0].profilePicture });
 							} resolve(undefined);
 						});
 					} else {

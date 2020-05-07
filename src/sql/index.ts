@@ -8,6 +8,7 @@ export const connection = mysql.createConnection({
 	user: process.env.GSQL_USER,
 	password: process.env.GSQL_PASS,
 	database: 'communication',
+	multipleStatements: true
 });
 	
 connection.connect(async (error) => {

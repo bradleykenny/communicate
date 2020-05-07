@@ -34,5 +34,19 @@ export default class AccountsTable {
 			);
 		});
 	};
+
+	static getProfile (uid: string): Promise<Object> {
+		const query = "SELECT * FROM Profiles WHERE uid=?";
+		return new Promise((resolve: any) => {
+			connection.query(
+				query, 
+				[ uid ], 
+				(error: any, results: any) => {
+					if (error) throw error;
+					resolve(results);
+				}
+			);
+		});
+	};
 	
 };
