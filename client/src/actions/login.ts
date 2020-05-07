@@ -27,13 +27,14 @@ export function login(username: string, password: string) {
         loginUserService(username, password)
             .then(
                 (user: UserData) => { 
-					console.log(typeof user);
-					dispatch(loginSuccess(user));
-					history.push('/');
-                },
-                (error: string) => {
-					console.log(error);
-                    dispatch(loginFailed(error));
+					if (user) {
+						console.log(user);
+						dispatch(loginSuccess(user));
+						history.push('/');
+					} else {
+						console.log("fail");
+                    	dispatch(loginFailed("Username/password incorrect."));
+					}
                 }
             );
     };

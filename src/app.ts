@@ -57,9 +57,7 @@ app.post('/login', async (req: any, res: any) => {
 		console.log(req.body);
 		let result = await Authentication.login(req.body.username, req.body.password)
 			.then((results: any) => {
-				if (results === true) {
-					return results;
-				} throw new Error("Username and/or password incorrect.");
+				return results;
 			});
 		res.send(result);
 	} catch(err) {

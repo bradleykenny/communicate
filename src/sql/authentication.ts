@@ -16,10 +16,12 @@ export default class AuthenticationTable {
 						const dbPassword = results[0].password;
 						bcrypt.compare(password, dbPassword, (error: any, result: any) => {
 							if (error) throw error;
-							resolve(result);
+							if (result === true) {
+								resolve({ username: username, email: results[0].email, profilePicture: results[0].profilePicture });
+							} resolve(undefined);
 						});
 					} else {
-						resolve(false);
+						resolve(undefined);
 					}
 				}
 			);
