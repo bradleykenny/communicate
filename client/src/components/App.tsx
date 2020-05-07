@@ -7,7 +7,13 @@ import Login from './Login';
 import Register from './Register';
 import Home from './Home';
 
-class App extends Component<{}, {}> {	
+class App extends Component<{ dispatch: any }, {}> {
+	
+	constructor(props: any) {
+        super(props);
+
+        const { dispatch } = this.props;
+    }
 
 	render() {
 		return (

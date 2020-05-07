@@ -1,3 +1,5 @@
+import { loginUserService } from '../services/authenticationService';
+
 interface LoginData {
 	username: string;
 	password: string;
@@ -17,14 +19,34 @@ export type LoginAction =
 
 // Action creators
 
-export function loginRequest(input: LoginData): LoginAction {
-	return { type: 'LOGIN_REQUEST', input };
-}
+export function login(username: string, password: string) {
+	
+	return (dispatch: any) => {
+        dispatch(loginRequest({ username, password }));
 
-export function loginSuccess(user: UserData): LoginAction {
-	return { type: 'LOGIN_SUCCESS', user };
-}
+        loginUserService(username, password)
+            .then(
+                (user: UserData) => { 
+					console.log("get ready...");
+					console.log(user);
+					dispatch(loginSuccess(user));
+                },
+                (error: string) => {
+					console.log(error);
+                    dispatch(loginFailed(error));
+                }
+            );
+    };
 
-export function loginFailed(error: string): LoginAction {
-	return { type: 'LOGIN_FAILED', error };
+    function loginRequest(input: LoginData): LoginAction {
+		return { type: 'LOGIN_REQUEST', input };
+	}
+	
+	function loginSuccess(user: UserData): LoginAction {
+		return { type: 'LOGIN_SUCCESS', user };
+	}
+	
+	function loginFailed(error: string): LoginAction {
+		return { type: 'LOGIN_FAILED', error };
+	}
 }
