@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import "../style/Header.css";
 
 class Header extends Component<{ user: { email: string } }, {}> {
@@ -12,7 +11,7 @@ class Header extends Component<{ user: { email: string } }, {}> {
 				</h1>
 				<p>
 					<a href="/">Home</a>
-					<a href="/">Profile</a>
+					<a href="/login">Profile</a>
 					<a href="/">Groups</a>
 					<a href="/">Settings</a>
 					<a href="/">{ this.props.user.email }</a>
@@ -22,12 +21,4 @@ class Header extends Component<{ user: { email: string } }, {}> {
 	}
 }
 
-function mapStateToProps(state: any) {
-	const { user } = state.auth;
-	return {
-		user
-	};
-}
-
-const connectedLoginPage = connect(mapStateToProps)(Header);
-export default connectedLoginPage; 
+export default Header;

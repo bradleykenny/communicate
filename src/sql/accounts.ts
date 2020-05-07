@@ -21,12 +21,12 @@ export default class AccountsTable {
 	};
 
 	// Get a user from the Accounts table based on `username`
-	static getUser (username: string): Promise<Object> {
-		const query = "SELECT * FROM Accounts WHERE username=?";
+	static getUser (uid: string): Promise<Object> {
+		const query = "SELECT * FROM Accounts WHERE uid=?";
 		return new Promise((resolve: any) => {
 			connection.query(
 				query, 
-				[ username ], 
+				[ uid ], 
 				(error: any, results: any) => {
 					if (error) throw error;
 					resolve(results);

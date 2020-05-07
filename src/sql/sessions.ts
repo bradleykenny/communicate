@@ -22,6 +22,20 @@ export default class SessionsTable {
 		});
 	}
 
+	static getUserID(sid: string): Promise<Object> {
+		const query = "SELECT uid FROM Sessions WHERE sid=?;";
+		return new Promise((resolve: any) => {
+			connection.query(
+				query, 
+				[ sid ], 
+				(error: any, results: any) => {
+					if (error) throw error;
+					resolve(results);
+				}
+			);
+		});
+	}
+
 	static checkValidSession(sid: string): boolean {
 		return true;
 	}

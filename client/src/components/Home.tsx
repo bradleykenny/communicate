@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../style/App.css';
 
 import Header from './Header';
@@ -10,19 +11,16 @@ type AppState = {
 	cards: Array<string>,
 }
 
-class Home extends Component<{}, AppState> {
-	
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			cards: [], // for later ...
-		}
-	}
+class Home extends Component<{ dispatch: any }, AppState> {
+
+	componentDidMount() {
+		// this.props.dispatch(userActions.getAll());
+    }
 	
 	render() {
 		return (
 			<div className="app">
-				<Header />
+				<Header user={{ email: "bradkenny@gmail.com"}}/>
 				<div id="headerSpacer"></div>
 				<div className="main">
 					<Modal />
@@ -39,4 +37,12 @@ class Home extends Component<{}, AppState> {
 	}
 }
 
-export default Home;
+function mapStateToProps(state: any) {
+	const { user } = state.auth;
+	return {
+		user
+	};
+}
+
+const connectedLoginPage = connect(mapStateToProps)(Home);
+export default connectedLoginPage; 

@@ -6,6 +6,7 @@ import path from 'path';
 import cors from 'cors';
 
 import { Accounts, Authentication } from './sql';
+import SessionsTable from './sql/sessions';
 
 const app = express();
 app.use(bodyParser.json());
@@ -40,9 +41,10 @@ app.post('/add/user', (req: any, res: any) => {
 
 app.get('/get/user', async (req: any, res: any) => {
 	try {
-		let result = await Accounts.getUser(req.body.username)
+		let uid = await SessionsTable.getUserID(req.query.sid).then((res:any) => { return res[0].uid; });
+		let result = await Accounts.getUser(uid)
 			.then((results: any) => {
-				return results;
+				return results[0];
 			});
 		return res.send(result);
 	} catch(err) {

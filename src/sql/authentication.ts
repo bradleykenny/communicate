@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 
 import Session from './sessions';
 
-export default class AuthenticationTable {
+export default class Authentication {
 	
 	static login(username: string, password: string): Promise<Object> {
 		const query = "SELECT * FROM Accounts WHERE username=?";
@@ -43,7 +43,7 @@ export default class AuthenticationTable {
 				[ uid, username, encryptedPassword, uid, firstName, lastName ],
 				(error: any, results: any) => {
 					if (error) throw error;
-					console.log(`Inserted user \'${ username }\' into the table.`);
+					console.log(`Registered \'${ username }\'.`);
 				}
 			);
 		});
