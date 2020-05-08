@@ -31,16 +31,16 @@ export default class Authentication {
 		});
 	}
 
-	static register (username: string, password: string, firstName: string, lastName: string): void {
+	static register (email: string, username: string, password: string, firstName: string, lastName: string): void {
 		const query = `
-			INSERT INTO Accounts (uid, username, password) VALUES (?, ?, ?); 
+			INSERT INTO Accounts (email, uid, username, password) VALUES (?, ?, ?, ?); 
 			INSERT INTO Profiles (uid, firstName, lastName) VALUES (?, ?, ?);
 		`
 		const uid = uuid();
 		bcrypt.hash(password, 10).then((encryptedPassword) => {
 			connection.query(
 				query, 
-				[ uid, username, encryptedPassword, uid, firstName, lastName ],
+				[ email, uid, username, encryptedPassword, uid, firstName, lastName ],
 				(error: any, results: any) => {
 					if (error) throw error;
 					console.log(`Registered \'${ username }\'.`);

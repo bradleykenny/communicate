@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { history } from'../services/history';
+
 import '../style/Card.css';
 import '../style/Login.css';
 
 type RegisterState = {
-	values: string,
-	username: string,
-	firstName: string,
-	lastName: string,
-	password: string,
-	confirmPassword: string,
+	email?: string,
+	username?: string,
+	firstName?: string,
+	lastName?: string,
+	password?: string,
+	confirmPassword?: string,
 }
 
 class Register extends Component<{}, RegisterState> {
@@ -18,7 +20,7 @@ class Register extends Component<{}, RegisterState> {
 	constructor(props: {}) {
 		super(props);
 		this.state = {
-			values: "false",
+			email: "",
 			username: "",
 			firstName: "",
 			lastName: "",
@@ -27,54 +29,41 @@ class Register extends Component<{}, RegisterState> {
 		}
 	}
 
+	handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+		const { name, value } = e.currentTarget;
+		this.setState({ [name]: value });
+	}
+
+	 submitForm = async (e: any) => {
+		e.preventDefault();
+		axios.post(`${ process.env.REACT_APP_API }/register`, this.state);
+		history.push("/login");
+	}
+
 	render() {
+		const { email, username, firstName, lastName, password, confirmPassword } = this.state;
+		
 		return (
 			<div id="loginApp">
 				<div className="card loginCard">
-					<form>
+					<form onSubmit={ this.submitForm }>
 						<h1 id="logo">
 							<a href="/register" className="loginLogo">communicate</a>
 						</h1>
-						<input type="text" placeholder="Username" value={ this.state.username } onChange={ this.handleUsernameChange } tabIndex={1} />
-						<input type="text" placeholder="First Name" value={ this.state.firstName } onChange={ this.handleFirstNameChange } tabIndex={2} />
-						<input type="text" placeholder="Last Name" value={ this.state.lastName } onChange={ this.handleLastNameChange } tabIndex={3} />
-						<input type="password" placeholder="Password" value={ this.state.password } onChange={ this.handlePasswordChange } tabIndex={4} />
-						<input type="password" placeholder="Confirm Password" value={ this.state.confirmPassword } onChange={ this.handleConfirmPasswordChange } tabIndex={5} />
+						<input type="text" placeholder="Email" name="email" value={ email } onChange={ this.handleChange } tabIndex={1} />
+						<input type="text" placeholder="Username" name="username" value={ username } onChange={ this.handleChange } tabIndex={2} />
+						<input type="text" placeholder="First Name" name="firstName" value={ firstName } onChange={ this.handleChange } tabIndex={3} />
+						<input type="text" placeholder="Last Name" name="lastName" value={ lastName } onChange={ this.handleChange } tabIndex={4} />
+						<input type="password" placeholder="Password" name="password" value={ password } onChange={ this.handleChange } tabIndex={5} />
+						<input type="password" placeholder="Confirm Password" name="confirmPassword" value={ confirmPassword } onChange={ this.handleChange } tabIndex={6} />
 						<p><a href="/login">Already have an account?</a></p>
-						<button onClick={ this.submitForm } tabIndex={6}>Submit</button>
-						{/* <br></br><br></br><br></br><p>correct? { this.state.values }</p> */}
+						<button tabIndex={7}>Submit</button>
 					</form>
 				</div>
 			</div>
 		);
 	}
 
-	handleUsernameChange = (e: any) => {
-		this.setState({ username: e.target.value });
-	}
-
-	handleFirstNameChange = (e: any) => {
-		this.setState({ firstName: e.target.value });
-	}
-
-	handleLastNameChange = (e: any) => {
-		this.setState({ lastName: e.target.value });
-	}
-
-	handlePasswordChange = (e: any) => {
-		this.setState({ password: e.target.value });
-	}
-
-	handleConfirmPasswordChange = (e: any) => {
-		this.setState({ confirmPassword: e.target.value });
-	}
-
- 	submitForm = async (e: any) => {
-		e.preventDefault();
-		console.log(this.state);
-		let res = await axios.post(`${ process.env.REACT_APP_API }/register`, this.state);
-		this.setState({ values: res.data.toString() });
-	}
 }
 
 export default Register;

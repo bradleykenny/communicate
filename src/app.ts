@@ -68,8 +68,8 @@ app.post('/login', async (req: any, res: any) => {
 });
 
 app.post('/register', (req: any, res: any) => {
-	const { username, password, firstName, lastName } = req.body;
-	Authentication.register(username, password, firstName, lastName);
+	const { email, username, password, firstName, lastName } = req.body;
+	Authentication.register(email, username, password, firstName, lastName);
 	return res.send("Inserted user.");
 });
 
