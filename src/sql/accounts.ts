@@ -28,7 +28,7 @@ export class AccountsTable {
 	};
 
 	// Get a user from the Accounts table based on `username`
-	static getUser (uid: string): Promise<Object> {
+	static getUser (uid: string): Promise<object> {
 		const query = "SELECT * FROM Accounts WHERE uid=?";
 		return new Promise((resolve: any) => {
 			connection.query(

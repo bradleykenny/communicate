@@ -6,7 +6,7 @@ import { SessionsTable } from './sessions';
 
 export class Authentication {
 	
-	static login(username: string, password: string): Promise<Object> {
+	static login(username: string, password: string): Promise<object> {
 		const query = "SELECT * FROM Accounts WHERE username=?";
 		return new Promise((resolve: any) => {
 			connection.query(

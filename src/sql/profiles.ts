@@ -12,7 +12,7 @@ export interface Profile {
 export class ProfilesTable {
 
 	// Get a user from the Accounts table based on `username`
-	static getProfile (uid: string): Promise<Object> {
+	static getProfile (uid: string): Promise<object> {
 		const query = "SELECT * FROM Profiles WHERE uid=?";
 		return new Promise((resolve: any) => {
 			connection.query(

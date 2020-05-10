@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 export class SessionsTable {
 	
-	static createSession(uid: string): Promise<Object> {
+	static createSession(uid: string): Promise<object> {
 		const query = `
 			DELETE FROM Sessions WHERE uid=?;
 			INSERT INTO Sessions (sid, uid, created) VALUES (?, ?, ?); 
@@ -22,7 +22,7 @@ export class SessionsTable {
 		});
 	}
 
-	static getUserID(sid: string): Promise<Object> {
+	static getUserID(sid: string): Promise<object> {
 		const query = "SELECT uid FROM Sessions WHERE sid=?;";
 		return new Promise((resolve: any) => {
 			connection.query(
