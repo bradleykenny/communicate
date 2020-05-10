@@ -2,9 +2,9 @@ import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 import bcrypt from 'bcrypt';
 
-import Session from './sessions';
+import { SessionsTable } from './sessions';
 
-export default class Authentication {
+export class Authentication {
 	
 	static login(username: string, password: string): Promise<Object> {
 		const query = "SELECT * FROM Accounts WHERE username=?";
@@ -14,12 +14,12 @@ export default class Authentication {
 				[ username ],
 				(error: any, results: any) => {
 					if (error) throw error;
-					if (results[0] !== undefined) {
+					if (results[0]) {
 						const dbPassword = results[0].password;
 						bcrypt.compare(password, dbPassword, (error: any, result: any) => {
 							if (error) throw error;
 							if (result === true) {
-								resolve(Session.createSession(results[0].uid));
+								resolve(SessionsTable.createSession(results[0].uid));
 								//resolve({ username: username, email: results[0].email, profilePicture: results[0].profilePicture });
 							} resolve(undefined);
 						});

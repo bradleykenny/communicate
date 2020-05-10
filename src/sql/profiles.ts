@@ -9,7 +9,7 @@ export interface Profile {
 	profilePicture: string,
 }
 
-export default class ProfilesTable {
+export class ProfilesTable {
 
 	// Get a user from the Accounts table based on `username`
 	static getProfile (uid: string): Promise<Object> {

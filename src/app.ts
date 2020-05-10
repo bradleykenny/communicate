@@ -5,8 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
 
-import { Accounts, Authentication, Profiles } from './sql';
-import SessionsTable from './sql/sessions';
+import { AccountsTable, Authentication, ProfilesTable, SessionsTable } from './sql';
 
 import { filteredAccount, filteredProfile } from './services/user';
 
@@ -33,26 +32,6 @@ app.get('/', function (req: any, res: any) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// User routes
-
-app.get('/get/user', async (req: any, res: any) => {
-	try {
-		let uid = await SessionsTable.getUserID(req.query.sid).then((res:any) => { return res[0].uid; });
-		let account = await Accounts.getUser(uid)
-			.then((results: any) => {
-				return filteredAccount(results[0]);
-			});
-		let profile = await Profiles.getProfile(uid)
-			.then((results: any) => {
-				return filteredProfile(results[0]);
-			});
-
-		return res.send({ ...account, ...profile });
-	} catch(err) {
-		console.log(err);
-	}
-});
-
 // Authentication routes
 
 app.post('/login', async (req: any, res: any) => {
@@ -71,10 +50,38 @@ app.post('/login', async (req: any, res: any) => {
 app.post('/register', (req: any, res: any) => {
 	const { email, username, password, firstName, lastName } = req.body;
 	Authentication.register(email, username, password, firstName, lastName);
-	return res.send("Inserted user.");
+	return res.send(`Registered ${username}.`);
 });
 
-// ... And finally listen
+// User routes
+
+app.get('/get/user', async (req: any, res: any) => {
+	try {
+		let uid = await SessionsTable.getUserID(req.query.sid).then((res:any) => { return res[0].uid; });
+		
+		let account = await AccountsTable.getUser(uid)
+			.then((results: any) => {
+				return filteredAccount(results[0]);
+			});
+		
+		let profile = await ProfilesTable.getProfile(uid)
+			.then((results: any) => {
+				return filteredProfile(results[0]);
+			});
+
+		return res.send({ ...account, ...profile });
+	} catch(err) {
+		console.log(err);
+	}
+});
+
+// Message routes
+
+app.get('/get/messages', (req: any, res: any) => {
+	return res.send("/get/messages");
+});
+
+// ... and finally listen
 
 app.listen(
 	app.get("port"), 
