@@ -36,8 +36,4 @@ export class SessionsTable {
 		});
 	}
 
-	static checkValidSession(sid: string): boolean {
-		return true;
-	}
-
 };
