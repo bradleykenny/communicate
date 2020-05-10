@@ -1,6 +1,13 @@
 import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 
+export interface Account {
+	uid: string,
+	username: string,
+	email: string,
+	password: string
+}
+
 export default class AccountsTable {
 	
 	// Insert a user into the Accounts table

@@ -5,8 +5,10 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
 
-import { Accounts, Authentication } from './sql';
+import { Accounts, Authentication, Profiles } from './sql';
 import SessionsTable from './sql/sessions';
+
+import { filteredAccount, filteredProfile } from './services/user';
 
 const app = express();
 app.use(bodyParser.json());
@@ -31,22 +33,21 @@ app.get('/', function (req: any, res: any) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-// Account routes
-
-app.post('/add/user', (req: any, res: any) => {
-	const { username, firstName, lastName } = req.body;
-	Accounts.insertUser(username, firstName, lastName);
-	return res.send("Inserted user.");
-});
+// User routes
 
 app.get('/get/user', async (req: any, res: any) => {
 	try {
 		let uid = await SessionsTable.getUserID(req.query.sid).then((res:any) => { return res[0].uid; });
-		let result = await Accounts.getUser(uid)
+		let account = await Accounts.getUser(uid)
 			.then((results: any) => {
-				return results[0];
+				return filteredAccount(results[0]);
 			});
-		return res.send(result);
+		let profile = await Profiles.getProfile(uid)
+			.then((results: any) => {
+				return filteredProfile(results[0]);
+			});
+
+		return res.send({ ...account, ...profile });
 	} catch(err) {
 		console.log(err);
 	}

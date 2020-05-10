@@ -2,6 +2,7 @@ import mysql from 'mysql';
 
 import AccountsTable from './accounts';
 import AuthenticationTable from './authentication';
+import ProfilesTable from './profiles';
 
 export const connection = mysql.createConnection({
 	host: process.env.GSQL_HOST,
@@ -29,3 +30,4 @@ process.on('SIGINT', () => {
 
 export const Accounts = AccountsTable;
 export const Authentication = AuthenticationTable;
+export const Profiles = ProfilesTable;

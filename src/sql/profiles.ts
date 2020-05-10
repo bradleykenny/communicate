@@ -1,6 +1,14 @@
 import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 
+export interface Profile {
+	uid: string,
+	firstName: string,
+	lastName: string,
+	phoneNumber: string,
+	profilePicture: string,
+}
+
 export default class ProfilesTable {
 
 	// Get a user from the Accounts table based on `username`
