@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import '../style/App.css';
 
-import { getUserInfo } from '../actions/user';
+import { getUserInfo, UserData } from '../actions/user';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
@@ -15,7 +15,7 @@ type AppState = {
 	user: { email: string }
 }
 
-class Home extends Component<{ dispatch: any, user: any }, AppState> {
+class Home extends Component<{ dispatch: any, user: UserData }, AppState> {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
@@ -24,12 +24,7 @@ class Home extends Component<{ dispatch: any, user: any }, AppState> {
 	
 	render() {
 		let user = { email: "" };
-		
-		if (this.props.user) {
-			user = this.props.user;
-		} else {
-			user = { email: "didnt work" };
-		}
+		if (this.props.user) user = this.props.user;
 
 		return (
 			<div className="app">
@@ -52,8 +47,6 @@ class Home extends Component<{ dispatch: any, user: any }, AppState> {
 
 function mapStateToProps(state: any) {
 	const { user } = state.user;
-	console.log("state....");
-	console.log(state);
 	return {
 		user
 	};
