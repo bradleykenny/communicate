@@ -27,8 +27,20 @@
 	border-radius: 5px;
 	font-size: 16px;
 	width: 100%;
-	max-width: 480px;
+	max-width: 490px;
 	transition: ease 0.25s;
+}
+
+.card > .comments > img {
+	background-color: gray;
+	height: 43px;
+	width: 43px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	margin-left: 15px;
+	background-size: contain;
+	float: right;
 }
  
 .card > form > input[type="text"]:hover, 
