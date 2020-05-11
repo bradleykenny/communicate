@@ -1,5 +1,4 @@
 import { connection } from './index';
-import { v4 as uuid } from 'uuid';
 
 export interface Profile {
 	uid: string,
@@ -13,7 +12,7 @@ export class ProfilesTable {
 
 	// Get a user from the Accounts table based on `username`
 	static getProfile (uid: string): Promise<object> {
-		const query = "SELECT * FROM Profiles WHERE uid=?";
+		const query = "SELECT * FROM Profiles WHERE uid=?"; // TODO: change this to not get * but only parts needed
 		return new Promise((resolve: any) => {
 			connection.query(
 				query, 

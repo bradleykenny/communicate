@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import '../style/App.css';
 
+import { getUserInfo } from '../actions/user';
+
 import Header from './Header';
 import Card, { CreatePost } from './Card';
 import Messages from './Messages';
@@ -10,14 +12,28 @@ import Modal from './Modal';
 
 type AppState = {
 	cards: Array<string>,
+	user: { email: string }
 }
 
-class Home extends Component<{ dispatch: any }, AppState> {
+class Home extends Component<{ dispatch: any, user: any }, AppState> {
+
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch(getUserInfo());
+	}
 	
 	render() {
+		let user = { email: "" };
+		
+		if (this.props.user) {
+			user = this.props.user;
+		} else {
+			user = { email: "didnt work" };
+		}
+
 		return (
 			<div className="app">
-				<Header user={{ email: "dummy@gmail.com" }}/>
+				<Header user={{ email: user.email }}/>
 				<div id="headerSpacer"></div>
 				<div className="main">
 					<Modal />
@@ -35,11 +51,13 @@ class Home extends Component<{ dispatch: any }, AppState> {
 }
 
 function mapStateToProps(state: any) {
-	const { user } = state.auth;
+	const { user } = state.user;
+	console.log("state....");
+	console.log(state);
 	return {
 		user
 	};
 }
 
-const connectedLoginPage = connect(mapStateToProps)(Home);
-export default connectedLoginPage; 
+const connectedHomePage = connect(mapStateToProps)(Home);
+export default connectedHomePage; 

@@ -7,7 +7,7 @@ import { SessionsTable } from './sessions';
 export class Authentication {
 	
 	static login(username: string, password: string): Promise<object> {
-		const query = "SELECT * FROM Accounts WHERE username=?";
+		const query = "SELECT * FROM Accounts WHERE username=?"; // TOOD: filter what we're getting from SELECT
 		return new Promise((resolve: any) => {
 			connection.query(
 				query,
