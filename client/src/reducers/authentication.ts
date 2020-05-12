@@ -24,6 +24,11 @@ export function authReducer(state = {}, action: LoginAction) {
 			return { 
 				loggingIn: false
 			};
+		case "LOGOUT":
+			return {
+				loggedIn: false,
+				user: {},
+			};
 		default:
 			return state
 	}

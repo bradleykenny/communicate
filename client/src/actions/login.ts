@@ -1,4 +1,4 @@
-import { loginUserService } from '../services/authenticationService';
+import { loginUserService, logoutUserService } from '../services/authenticationService';
 import { history } from'../services/history';
 
 interface LoginData {
@@ -15,7 +15,8 @@ export interface UserData {
 export type LoginAction =
 	| { type: 'LOGIN_REQUEST'; input: LoginData } 
 	| { type: 'LOGIN_SUCCESS'; user: UserData } 
-	| { type: 'LOGIN_FAILED'; error: string };
+	| { type: 'LOGIN_FAILED'; error: string }
+	| { type: 'LOGOUT' }
 
 
 // Action creators
@@ -31,7 +32,6 @@ export function login(username: string, password: string) {
 						dispatch(loginSuccess(user));
 						history.push('/');
 					} else {
-						console.log("fail");
                     	dispatch(loginFailed("Username/password incorrect."));
 					}
                 }
@@ -49,4 +49,10 @@ export function login(username: string, password: string) {
 	function loginFailed(error: string): LoginAction {
 		return { type: 'LOGIN_FAILED', error };
 	}
+}
+
+export function logout() {
+	logoutUserService();
+	history.push('/login');
+	return { type: "LOGOUT" };
 }

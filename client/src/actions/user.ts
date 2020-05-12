@@ -14,6 +14,17 @@ export interface UserData {
 	username: string,
 }
 
+export function emptyUser(): UserData {
+	return {
+		email: "",
+		firstName: "",
+		lastName: "",
+		phoneNumber: "",
+		profilePicture: "",
+		username: "",
+	}
+}
+
 export type UserAction =
 	| { type: 'USER_REQUEST'; input: SessionData } 
 	| { type: 'USER_SUCCESS'; user: UserData } 

@@ -8,6 +8,7 @@ import { history } from '../services/history';
 import Login from './Login';
 import Register from './Register';
 import Home from './Home';
+import Logout from './Logout';
 
 class App extends Component<{ dispatch: any }, {}> {
 	
@@ -27,6 +28,9 @@ class App extends Component<{ dispatch: any }, {}> {
 				<Switch>
 					<Route path="/login">
 						<Login />
+					</Route>
+					<Route path="/logout">
+						<Logout />
 					</Route>
 					<Route path="/register">
 						<Register />

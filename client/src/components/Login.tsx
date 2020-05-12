@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { login } from '../actions/login';
+import { login, logout } from '../actions/login';
 
 import '../style/Card.css';
 import '../style/Login.css';
@@ -27,6 +27,11 @@ class Login extends Component<LoginProps, LoginState> {
 			password: '',
 			submitted: false
 		};
+	}
+
+	componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(logout());
 	}
 
 	handleChange = (e: React.FormEvent<HTMLInputElement>) => {

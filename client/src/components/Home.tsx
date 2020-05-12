@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import '../style/App.css';
 
-import { getUserInfo, UserData } from '../actions/user';
+import { getUserInfo, UserData, emptyUser } from '../actions/user';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
 import Messages from './Messages';
 import Modal from './Modal';
 
-type AppState = {
-	cards: Array<string>,
-	user: { email: string }
+type AppProps = {
+	dispatch: any,
+	user: UserData
 }
 
-class Home extends Component<{ dispatch: any, user: UserData }, AppState> {
+type AppState = {
+	cards: Array<string>
+}
+
+class Home extends Component<AppProps, AppState> {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
@@ -23,12 +27,11 @@ class Home extends Component<{ dispatch: any, user: UserData }, AppState> {
 	}
 	
 	render() {
-		let user = { email: "" };
-		if (this.props.user) user = this.props.user;
+		let user = this.props.user ? this.props.user : emptyUser();
 
 		return (
 			<div className="app">
-				<Header user={{ email: user.email }}/>
+				<Header user={ user }/>
 				<div id="headerSpacer"></div>
 				<div className="main">
 					<Modal />
@@ -36,7 +39,7 @@ class Home extends Component<{ dispatch: any, user: UserData }, AppState> {
 					<div id="rightSide">
 						{/* <CreatePost /> */}
 						<div id="cards">
-							<Card />
+							<Card text={ user.email }/>
 						</div>
 					</div>
 				</div>

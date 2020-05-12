@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import "../style/Header.css";
 
-class Header extends Component<{ user: { email: string } }, {}> {
+import { UserData } from '../actions/user';
+
+class Header extends Component<{ user: UserData }, {}> {
 	render() {
 		const { user } = this.props;
 		return (
@@ -14,7 +16,7 @@ class Header extends Component<{ user: { email: string } }, {}> {
 					<a href="/login">Profile</a>
 					<a href="/">Groups</a>
 					<a href="/">Settings</a>
-					<a href="/">{ this.props.user.email }</a>
+					<a href="/logout">{ this.props.user.email }</a>
 				</p>
 			</header>
 		);
