@@ -6,7 +6,7 @@ interface LoginData {
 	password: string;
 }
 
-export interface UserData {
+export interface LoginUserData {
 	username: string;
 	email: string;
 	profilePicture: string;
@@ -14,7 +14,7 @@ export interface UserData {
 
 export type LoginAction =
 	| { type: 'LOGIN_REQUEST'; input: LoginData } 
-	| { type: 'LOGIN_SUCCESS'; user: UserData } 
+	| { type: 'LOGIN_SUCCESS'; user: LoginUserData } 
 	| { type: 'LOGIN_FAILED'; error: string }
 	| { type: 'LOGOUT' }
 
@@ -27,7 +27,7 @@ export function login(username: string, password: string) {
 
         loginUserService(username, password)
             .then(
-                (user: UserData) => { 
+                (user: LoginUserData) => { 
 					if (user) {
 						dispatch(loginSuccess(user));
 						history.push('/');
@@ -42,7 +42,7 @@ export function login(username: string, password: string) {
 		return { type: 'LOGIN_REQUEST', input };
 	}
 	
-	function loginSuccess(user: UserData): LoginAction {
+	function loginSuccess(user: LoginUserData): LoginAction {
 		return { type: 'LOGIN_SUCCESS', user };
 	}
 	

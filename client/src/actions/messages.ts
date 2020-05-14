@@ -10,7 +10,9 @@ export interface MessageData {
 	mid: string,
 	sender: string,
 	receiver: string,
-	text: string
+	title: string,
+	text: string,
+	time: Date
 }
 
 export function emptyMessage(): MessageData {
@@ -18,7 +20,9 @@ export function emptyMessage(): MessageData {
 		mid: "",
 		sender: "",
 		receiver: "",
-		text: ""
+		title: "",
+		text: "",
+		time: new Date()
 	}
 }
 

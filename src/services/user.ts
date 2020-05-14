@@ -1,7 +1,6 @@
 import { Account, Profile } from '../sql/';
 
 export const filteredAccount = (user: Account) => {
-	delete user.uid;
 	delete user.password;
 	return user;
 }

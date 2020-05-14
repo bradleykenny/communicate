@@ -6,6 +6,7 @@ export interface SessionData {
 }
 
 export interface UserData {
+	uid: string,
 	email: string,
 	firstName: string,
 	lastName: string,
@@ -16,6 +17,7 @@ export interface UserData {
 
 export function emptyUser(): UserData {
 	return {
+		uid: "",
 		email: "",
 		firstName: "",
 		lastName: "",

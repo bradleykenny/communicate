@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import '../style/Messages.css';
 
-type MessageState = {
-	sender: string,
-	time: string,
-	title: string,
-	text: string,
+import { MessageData } from '../actions/messages';
+
+type MessagesProps = {
+	messages: Array<MessageData>
 }
 
-class Messages extends Component {
+class Messages extends Component<MessagesProps, {}> {
 	genMessages = () => {
-		let elements = [];
-		for (let i = 0; i < 20; i++) {
-			elements.push(<Message />);
-		}
+		let elements: Array<any> = [];
+		this.props.messages && this.props.messages.forEach((message: MessageData) => {
+			let { sender, receiver, title, text, time } = message;
+			elements.push(<Message sender={ sender } receiver={ receiver } title={ title } text={ text } time={ time } />);
+		});
 		return elements;
 	};
 
@@ -28,13 +28,15 @@ class Messages extends Component {
 	}
 }
 
-class Message extends Component<{ }, MessageState> {
-	state = {
-		sender: 'Bradley Kenny',
-		time: '8:08pm',
-		title: 'Information on AirPods Pro',
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pretium ex quam, vitae aliquet erat lobortis lobortis. Aliquam lacus ante, ultrices quis tincidunt id, lacinia at diam. Vestibulum id pulvinar massa. Cras eu nulla quis quam scelerisque vulputate vitae ut arcu. Suspendisse tristique non massa et pretium. Maecenas nisl ligula, egestas ut lorem vel, placerat lacinia sapien. Vivamus maximus hendrerit neque, sed consequat felis sagittis ut. Quisque dolor justo, pulvinar et mauris vel, sagittis consectetur eros. Aliquam maximus vestibulum leo sed efficitur. Nam faucibus pharetra nisl nec ullamcorper. Pellentesque rhoncus metus eu enim blandit, sit amet gravida ligula fermentum. Vestibulum mauris erat, tempor ut lacus non, tincidunt fringilla sapien.',
-	}
+type MessageProps = {
+	sender: string,
+	receiver: string,
+	title: string,
+	text: string,
+	time: Date
+}
+
+class Message extends Component<MessageProps, {}> {
 
 	getter = async () => {
 		const response = await fetch(process.env.REACT_APP_API + '/ping');
@@ -47,7 +49,7 @@ class Message extends Component<{ }, MessageState> {
 	}
 	
 	render() {
-		let { sender, time, title, text } = this.state;
+		let { sender, time, title, text } = this.props;
 		return (
 			<div className="innerCard">
 				<h2>{ sender }</h2>

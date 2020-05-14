@@ -78,8 +78,8 @@ app.get('/get/user', async (req: any, res: any) => {
 // Message routes
 
 app.post('/messages/send', async (req: any, res: any) => {
-	const { sender, receiver, text } = req.body;
-	MessagesTable.sendMessage(sender, receiver, text);
+	const { sender, receiver, title, text } = req.body;
+	MessagesTable.sendMessage(sender, receiver, title, text);
 	return res.send(`Sent message from ${sender} to ${receiver}.`);
 });
 
