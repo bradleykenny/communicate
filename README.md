@@ -3,11 +3,9 @@
 
 This is some sort of social network connecting to some Internet databases. 
 
-Mainly just want to test my knowledge of React.js, Node.js, and DB technologies.
+Mainly just want to test my knowledge of React.js, Redux, Node.js, and DB technologies.
 
 ---
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
