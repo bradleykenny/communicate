@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../style/App.css';
 
 import { getUserInfo, UserData, emptyUser } from '../actions/user';
+import { getMessages } from '../actions/messages';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
@@ -24,6 +25,7 @@ class Home extends Component<AppProps, AppState> {
 	componentWillMount() {
 		const { dispatch } = this.props;
 		dispatch(getUserInfo());
+		dispatch(getMessages("b024fee8-2613-4757-b2d0-29e97c708de0", "sent"));
 	}
 	
 	render() {

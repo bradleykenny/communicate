@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
 
-import { AccountsTable, Authentication, ProfilesTable, SessionsTable } from './sql';
+import { AccountsTable, Authentication, ProfilesTable, SessionsTable, MessagesTable } from './sql';
 
 import { filteredAccount, filteredProfile } from './services/user';
 
@@ -77,8 +77,36 @@ app.get('/get/user', async (req: any, res: any) => {
 
 // Message routes
 
-app.get('/get/messages', (req: any, res: any) => {
-	return res.send("/get/messages");
+app.post('/messages/send', async (req: any, res: any) => {
+	const { sender, receiver, text } = req.body;
+	MessagesTable.sendMessage(sender, receiver, text);
+	return res.send(`Sent message from ${sender} to ${receiver}.`);
+});
+
+app.get('/messages/get/sent', async (req: any, res: any) => {
+	try {
+		let result = await MessagesTable.getMessagesSent(req.query.uid)
+			.then((results: any) => {
+				console.log(results);
+				return results;
+			});
+		res.send(result);
+	} catch(err) {
+		console.log(err);
+	}
+});
+
+app.get('/messages/get/received', async (req: any, res: any) => {
+	try {
+		let result = await MessagesTable.getMessagesReceived(req.query.uid)
+			.then((results: any) => {
+				console.log(results);
+				return results;
+			});
+		res.send(result);
+	} catch(err) {
+		console.log(err);
+	}
 });
 
 // ... and finally listen

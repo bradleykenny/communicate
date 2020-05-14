@@ -4,6 +4,7 @@ export * from './accounts';
 export * from './authentication';
 export * from './profiles';
 export * from './sessions';
+export * from './messages';
 
 export const connection = mysql.createConnection({
 	host: process.env.GSQL_HOST,

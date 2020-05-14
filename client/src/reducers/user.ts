@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { UserAction } from '../actions/user';
 
 export function userReducer(state = {}, action: UserAction) {
