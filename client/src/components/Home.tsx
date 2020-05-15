@@ -48,11 +48,11 @@ class Home extends Component<AppProps, AppState> {
 				<Header user={ user }/>
 				<div id="headerSpacer"></div>
 				<div className="main">
-					<p onClick={ this.wantReceived }>Received</p>
-					<p onClick={ this.wantSent }>Sent</p>
 					<Modal />
 					<Messages messages={ messages }/>
 					<div id="rightSide">
+						<p onClick={ this.wantReceived }>Received</p>
+						<p onClick={ this.wantSent }>Sent</p>
 						<CreatePost sender={ user.uid }/>
 						<div id="cards">
 							<Card text={ user.email }/>
