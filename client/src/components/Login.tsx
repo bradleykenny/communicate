@@ -73,6 +73,7 @@ class Login extends Component<LoginProps, LoginState> {
 							<a href="/register">Don't have an account with us?</a>
 						</p>
 						<button tabIndex={3}>Submit</button>
+						{ submitted && <p>Something was wrong.</p> }
 						{ loggingIn && <p>Checking...</p> }
 					</form>
 				</div>
