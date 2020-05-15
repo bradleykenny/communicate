@@ -6,13 +6,27 @@ export * from './profiles';
 export * from './sessions';
 export * from './messages';
 
-export const connection = mysql.createConnection({
-	socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-	database: process.env.DB_NAME,
-	multipleStatements: true
-});
+let options = {};
+
+if (process.env.PROD === "true") {
+	options = {
+		socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME,
+		multipleStatements: true
+	}
+} else {
+	options = {
+		host: process.env.GSQL_HOST,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
+		database: process.env.DB_NAME,
+		multipleStatements: true
+	}
+}
+
+export const connection = mysql.createConnection(options);
 	
 connection.connect(async (error) => {
 	if (error) {

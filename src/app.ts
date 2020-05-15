@@ -120,5 +120,5 @@ app.get('/messages/get/received', async (req: any, res: any) => {
 
 app.listen(
 	app.get("port"), 
-	() => { console.log("HELLO"); console.log(`Server running on port ${ app.get("port") }`); }
+	() => { console.log(`Server running on port ${ app.get("port") }`); }
 ).on('error', (e: object) => console.error(e));
