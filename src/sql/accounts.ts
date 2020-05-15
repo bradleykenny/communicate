@@ -56,5 +56,19 @@ export class AccountsTable {
 			);
 		});
 	};
+
+	static getAllUsers (): Promise<Array<Account>> {
+		const query = "SELECT * FROM Accounts";
+		return new Promise((resolve: any) => {
+			connection.query(
+				query, 
+				[ ], 
+				(error: any, results: any) => {
+					if (error) console.error(error);
+					resolve(results);
+				}
+			);
+		});
+	}
 	
 };

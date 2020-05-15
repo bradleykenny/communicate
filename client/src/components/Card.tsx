@@ -11,6 +11,12 @@ type CardState = {
 	text?: string, // text is optional
 }
 
+type LimitedAccount = {
+	uid: string,
+	username: string,
+	email: string,
+}
+
 class Card extends Component<CardProps, CardState> {
 
 	constructor(props: CardProps) {
@@ -63,6 +69,7 @@ type CreatePostState = {
 	receiver?: string,
 	title?: string,
 	text?: string
+	users?: Array<LimitedAccount>
 };
 
 export class CreatePost extends Component<CreatePostProps, CreatePostState> {
@@ -73,8 +80,14 @@ export class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		this.state = {
 			receiver: '',
 			title: '',
-			text: ''
+			text: '',
+			users: []
 		};
+	}
+
+	async componentWillMount() {
+		let users: any = await axios.get(`${ process.env.REACT_APP_API }/get/user/all`);
+		this.setState({ users: users.data });
 	}
 
 	handleCreatePost = (e: any) => {
@@ -89,13 +102,20 @@ export class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		this.setState({ [name]: value });
 	}
 
+	selectChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    	this.setState({ receiver: e.currentTarget.value });
+  	}
+
 	render() {
 		const { receiver, title, text } = this.state;
 		return (
 			<div id="createPost">
 				<div className="card">
 					<form onSubmit={ this.handleCreatePost }>
-						<input type="text" name="receiver" value={ receiver } placeholder="Receiver" onChange={ this.handleChange } />
+						<select name="receiver" value={ receiver } onChange={ this.selectChange }>
+							<option value="" disabled selected>Receiver</option>
+							{ this.state.users && this.state.users.map((o: LimitedAccount) => <option key={o.username} value={o.username}>{o.username}</option>)}
+						</select>
 						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } />
 						<input type="text" name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } />
 						<button>Submit</button>

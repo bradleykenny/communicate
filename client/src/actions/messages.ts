@@ -12,7 +12,7 @@ export interface MessageData {
 	receiver: string,
 	title: string,
 	text: string,
-	time: Date
+	time: string
 }
 
 export function emptyMessage(): MessageData {
@@ -22,7 +22,7 @@ export function emptyMessage(): MessageData {
 		receiver: "",
 		title: "",
 		text: "",
-		time: new Date()
+		time: ""
 	}
 }
 
@@ -37,7 +37,6 @@ export type MessageAction =
 export function getMessages(uid: string, type: string) {
     return (dispatch: any) => {
         dispatch(request());
-		console.log(uid, type);
         getMessageService(uid, type)
             .then(
                 (messages: MessageData) => dispatch(success(messages)),
@@ -46,6 +45,6 @@ export function getMessages(uid: string, type: string) {
     };
 
     function request() { return { type: "MESSAGES_REQUEST" } }
-    function success(messages: any) { console.log(); return { type: "MESSAGES_RECEIVED", messages: messages } }
+    function success(messages: any) { return { type: "MESSAGES_RECEIVED", messages: messages } }
     function failure(error: any) { return { type: "MESSAGES_FAILED", error: error } }
 }

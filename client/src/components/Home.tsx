@@ -55,7 +55,6 @@ class Home extends Component<AppProps, AppState> {
 function mapStateToProps(state: any) {
 	const { user } = state.user;
 	const { messages } = state.messages;
-	console.log(messages);
 	return {
 		user,
 		messages

@@ -13,10 +13,8 @@ class Header extends Component<{ user: UserData }, {}> {
 				</h1>
 				<p>
 					<a href="/">Home</a>
-					<a href="/login">Profile</a>
-					<a href="/">Groups</a>
-					<a href="/">Settings</a>
-					<a href="/logout">{ this.props.user.email }</a>
+					<a href="/">{ this.props.user.email }</a>
+					<a href="/logout">Logout</a>
 				</p>
 			</header>
 		);

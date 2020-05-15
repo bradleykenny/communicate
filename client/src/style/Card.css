@@ -19,7 +19,8 @@
 
 .card > .comments > input[type="text"], 
 .card > form > input[type="text"], 
-.card > form > input[type="password"] {
+.card > form > input[type="password"],
+.card > form > select {
 	padding: 12.5px 10px;
 	outline: none;
 	border: 0px solid #a1a1a1;
@@ -29,6 +30,13 @@
 	width: 100%;
 	max-width: 480px;
 	transition: ease 0.25s;
+	margin-bottom: 10px;
+}
+
+.card > form > select {
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .card > .comments > img {

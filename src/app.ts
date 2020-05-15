@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
 
-import { AccountsTable, Authentication, ProfilesTable, SessionsTable, MessagesTable } from './sql';
+import { AccountsTable, Authentication, ProfilesTable, SessionsTable, MessagesTable, Account } from './sql';
 
 import { filteredAccount, filteredProfile } from './services/user';
 
@@ -74,6 +74,13 @@ app.get('/get/user', async (req: any, res: any) => {
 		console.log(err);
 	}
 });
+
+app.get('/get/user/all', async (req: any, res: any) => {
+	let allUsers = await AccountsTable.getAllUsers();
+	res.send(allUsers.map((user: Account) => {
+		return filteredAccount(user);
+	}));
+})
 
 // Message routes
 
