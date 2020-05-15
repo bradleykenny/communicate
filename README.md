@@ -5,6 +5,8 @@ This is some sort of social network connecting to some Internet databases.
 
 Mainly just want to test my knowledge of React.js, Redux, Node.js, and DB technologies.
 
+Live demo at [https://communicate.now.sh](https://communicate.now.sh)
+
 ---
 
 ## Available Scripts
