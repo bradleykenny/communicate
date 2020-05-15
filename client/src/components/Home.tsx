@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../style/App.css';
 
 import { getUserInfo, UserData, emptyUser, getMessages, MessageData } from '../actions/';
-
+import { history } from'../services/history';
 
 import Header from './Header';
 import Card, { CreatePost } from './Card';
@@ -25,8 +25,8 @@ class Home extends Component<AppProps, AppState> {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
-		dispatch(getUserInfo())
-		// dispatch(getProfileAndMessages());
+		(localStorage.getItem('sessionID') === null) && history.push('login');
+		dispatch(getUserInfo());
 	}
 	
 	render() {

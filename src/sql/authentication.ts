@@ -13,11 +13,11 @@ export class Authentication {
 				query,
 				[ username ],
 				(error: any, results: any) => {
-					if (error) throw error;
+					if (error) console.log(error);
 					if (results[0]) {
 						const dbPassword = results[0].password;
 						bcrypt.compare(password, dbPassword, (error: any, result: any) => {
-							if (error) throw error;
+							if (error) console.log(error);
 							if (result === true) {
 								resolve(SessionsTable.createSession(results[0].uid));
 								//resolve({ username: username, email: results[0].email, profilePicture: results[0].profilePicture });
@@ -42,7 +42,7 @@ export class Authentication {
 				query, 
 				[ email, uid, username, encryptedPassword, uid, firstName, lastName ],
 				(error: any, results: any) => {
-					if (error) throw error;
+					if (error) console.log(error);
 					console.log(`Registered \'${ username }\'.`);
 				}
 			);

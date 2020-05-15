@@ -1,6 +1,8 @@
 import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 
+import { AccountsTable, Account } from './';
+
 export interface Message {
 	mid: string,
 	sender: string,
@@ -17,14 +19,16 @@ export class MessagesTable {
 		const query = "INSERT INTO Messages (mid, sender, receiver, title, text, time) VALUES (?, ?, ?, ?, ?, ?);";
 		const mid = uuid();
 		const time = new Date();
-		connection.query(
-			query, 
-			[ mid, sender, receiver, title, text, time ],
-			(error: any, results: any) => {
-				if (error) throw error;
-				console.log(`Message sent.`);
-			}
-		);
+		AccountsTable.getUserByUN(receiver).then((recUser: Account) => { 
+			connection.query(
+				query, 
+				[ mid, sender, recUser.uid, title, text, time ],
+				(error: any, results: any) => {
+					if (error) console.error(error);
+					console.log(`Message ${ mid } sent.`);
+				}
+			);
+		});
 	};
 	
 	// Get all messages sent to the user with `uid`
@@ -35,8 +39,12 @@ export class MessagesTable {
 				query, 
 				[ uid ], 
 				(error: any, results: any) => {
-					if (error) throw error;
-					resolve(results);
+					if (error) console.error(error);
+					if (results.length > 0) {
+						this.modifyUsername(results);
+						resolve(results);
+					}
+					else resolve(results);
 				}
 			);
 		});
@@ -50,11 +58,33 @@ export class MessagesTable {
 				query, 
 				[ uid ], 
 				(error: any, results: any) => {
-					if (error) throw error;
-					resolve(results);
+					if (error) console.error(error);
+					if (results.length > 0) {
+						this.modifyUsername(results);
+						resolve(results);
+					}
+					else resolve(results);
 				}
 			);
 		});
 	};
-	
+
+	static modifyUsername (messages: Array<Message>): Promise<object> {
+		const query = "SELECT * FROM Accounts WHERE uid=?"; // TODO: change this to not get * but only parts needed
+		return new Promise((resolve: any) => {
+			resolve(messages.map((value: Message) => {
+				connection.query(
+				query, 
+				[ value.sender ], 
+				(error: any, results: Array<Account>) => {
+					if (error) console.error(error);
+					value.sender = results[0].username;
+					console.log(value);
+					return value;
+				})
+				console.log(value);
+			}));
+		});
+	}
+
 };

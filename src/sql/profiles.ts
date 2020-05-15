@@ -18,7 +18,7 @@ export class ProfilesTable {
 				query, 
 				[ uid ], 
 				(error: any, results: any) => {
-					if (error) throw error;
+					if (error) console.error(error);
 					resolve(results);
 				}
 			);

@@ -14,7 +14,7 @@ export class SessionsTable {
 				query, 
 				[ uid, sid, uid, new Date() ],
 				(error: any, results: any) => {
-					if (error) throw error;
+					if (error) console.error(error);
 					console.log(`Created session #\'${ sid }\'.`);
 					resolve(sid);
 				}
@@ -29,7 +29,7 @@ export class SessionsTable {
 				query, 
 				[ sid ], 
 				(error: any, results: any) => {
-					if (error) throw error;
+					if (error) console.error(error);
 					resolve(results);
 				}
 			);

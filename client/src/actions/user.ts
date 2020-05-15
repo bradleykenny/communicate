@@ -1,4 +1,5 @@
 import { history } from'../services/history';
+import { getMessages } from './messages';
 import { getUserInfoService } from '../services/userService';
 
 export interface SessionData {
@@ -41,7 +42,7 @@ export function getUserInfo() {
 
         getUserInfoService()
             .then(
-                (users: UserData) => dispatch(success(users)),
+                (user: UserData) => { dispatch(success(user)); dispatch(getMessages(user.uid, "received")); },
                 (error: any) => dispatch(failure(error))
             );
     };
