@@ -28,6 +28,16 @@ class Home extends Component<AppProps, AppState> {
 		(localStorage.getItem('sessionID') === null) && history.push('login');
 		dispatch(getUserInfo());
 	}
+
+	wantSent = () => {
+		const { dispatch } = this.props;
+		dispatch(getMessages(this.props.user.uid, "sent"));
+	}
+
+	wantReceived = () => {
+		const { dispatch } = this.props;
+		dispatch(getMessages(this.props.user.uid, "received"));
+	}
 	
 	render() {
 		let user = this.props.user ? this.props.user : emptyUser();
@@ -38,6 +48,8 @@ class Home extends Component<AppProps, AppState> {
 				<Header user={ user }/>
 				<div id="headerSpacer"></div>
 				<div className="main">
+					<p onClick={ this.wantReceived }>Received</p>
+					<p onClick={ this.wantSent }>Sent</p>
 					<Modal />
 					<Messages messages={ messages }/>
 					<div id="rightSide">

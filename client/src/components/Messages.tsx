@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../style/Messages.css';
 
-import { MessageData } from '../actions/messages';
+import { MessageData } from '../actions/';
 
 type MessagesProps = {
 	messages: Array<MessageData>
