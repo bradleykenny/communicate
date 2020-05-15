@@ -7,10 +7,10 @@ export * from './sessions';
 export * from './messages';
 
 export const connection = mysql.createConnection({
-	host: process.env.GSQL_HOST,
-	user: process.env.GSQL_USER,
-	password: process.env.GSQL_PASS,
-	database: 'communication',
+	socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	database: process.env.DB_NAME,
 	multipleStatements: true
 });
 	

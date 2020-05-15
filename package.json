@@ -4,7 +4,8 @@
 	"type": "commonjs",
 	"main": "build/app.js",
 	"scripts": {
-		"start": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
+		"start": "node build/app.js",
+		"concurrent": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
 		"build": "tsc",
 		"backend": "npm run build && node build/app.js",
 		"frontend": "cd client && npm start"
@@ -26,7 +27,7 @@
 		"@types/express": "^4.17.6",
 		"@types/mysql": "^2.15.10",
 		"@types/node": "^13.13.0",
-		"@types/uuid": "^7.0.2",
+		"@types/uuid": "^7.0.3",
 		"concurrently": "^4.0.1"
 	}
 }
