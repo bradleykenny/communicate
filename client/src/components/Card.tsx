@@ -75,6 +75,8 @@ export class CreatePost extends Component<CreatePostProps, CreatePostState> {
 
 		let infoToSend = {...this.state, sender: this.props.sender};
 		axios.post(`${ process.env.REACT_APP_API }/messages/send`, infoToSend);
+		alert("Message sent.");
+		this.setState({ receiver: '', title: '', text: '' });
 	}
 
 	handleChange = (e: React.FormEvent<HTMLInputElement>) => {
