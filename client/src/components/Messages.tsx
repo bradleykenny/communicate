@@ -19,10 +19,8 @@ class Messages extends Component<MessagesProps, {}> {
 
 	render() {
 		return (
-			<div id="leftSidebar">
-				<div id="messages">
-					{ this.genMessages() }
-				</div>
+			<div id="messages">
+				{ this.genMessages() }
 			</div>
 		);
 	}

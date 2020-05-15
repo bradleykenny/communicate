@@ -49,13 +49,15 @@ class Home extends Component<AppProps, AppState> {
 				<div id="headerSpacer"></div>
 				<div className="main">
 					<Modal />
-					<Messages messages={ messages }/>
+					<div id="leftSidebar">
+						<p className="sendReceiveSelector" onClick={ this.wantReceived }>Received</p>
+						<p className="sendReceiveSelector" onClick={ this.wantSent }>Sent</p>
+						<Messages messages={ messages }/>
+					</div>
 					<div id="rightSide">
-						<p onClick={ this.wantReceived }>Received</p>
-						<p onClick={ this.wantSent }>Sent</p>
 						<CreatePost sender={ user.uid }/>
 						<div id="cards">
-							<Card text={ user.email }/>
+							<Card title={ user.uid } text={ user.email }/>
 						</div>
 					</div>
 				</div>

@@ -3,12 +3,8 @@ import axios from 'axios';
 import '../style/Card.css';
 
 type CardProps = {
-	text: string
-}
-
-type CardState = {
 	title: string,
-	text?: string, // text is optional
+	text: string
 }
 
 type LimitedAccount = {
@@ -17,41 +13,25 @@ type LimitedAccount = {
 	email: string,
 }
 
-class Card extends Component<CardProps, CardState> {
+class Card extends Component<CardProps, {}> {
 
 	constructor(props: CardProps) {
 		super(props);
-		this.state = {
-			title: "Title",
-			text: "Text",
-		}
 	}
 
 	render() {
-		let { title, text } = this.state;
+		let { title, text } = this.props;
 
 		return (
 			<div className="card">
-				<h2 onClick={ this.handleH2Click }>{ title }</h2>
-				<p onClick={ this.handlePClick }>{ text }</p>
+				<h2 >{ title }</h2>
+				<p >{ text }</p>
 				<div className="comments">
 					{ this.comments() }
 					<img src="https://image.cnbcfm.com/api/v1/image/106069136-1565284193572gettyimages-1142580869.jpeg?v=1576531407&w=1400&h=950"></img>
 				</div>
 			</div>
 		);
-	}
-
-	handleH2Click = () => {
-		this.setState({
-			title: "You Clicked Me :o",
-		});
-	}
-
-	handlePClick = () => {
-		this.setState({
-			text: "Clicked me... :/",
-		});
 	}
 
 	comments = () => {
@@ -113,7 +93,7 @@ export class CreatePost extends Component<CreatePostProps, CreatePostState> {
 				<div className="card">
 					<form onSubmit={ this.handleCreatePost }>
 						<select name="receiver" value={ receiver } onChange={ this.selectChange }>
-							<option value="" disabled selected>Receiver</option>
+							<option value="" disabled selected>Receiver ▼</option>
 							{ this.state.users && this.state.users.map((o: LimitedAccount) => <option key={o.username} value={o.username}>{o.username}</option>)}
 						</select>
 						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } />

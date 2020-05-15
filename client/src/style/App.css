@@ -23,3 +23,19 @@ body * {
 #rightSide {
 	margin-left: 28%;
 }
+
+.sendReceiveSelector {
+	display: inline-block;
+	width: 40%;
+	border-radius: 5px;
+	padding: 15px 0px;
+	text-align: center;
+	background-color: lightgray;
+	cursor: pointer;
+	margin: -40px 5% 10px;
+}
+
+.sendReceiveSelector:hover {
+	background-color: gray;
+	color: white;
+}
