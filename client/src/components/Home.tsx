@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import '../style/App.css';
 
-import { getUserInfo, UserData, emptyUser, getMessages, MessageData, getProfileAndMessages } from '../actions/';
+import { getUserInfo, UserData, emptyUser, getMessages, MessageData } from '../actions/';
 
 
 import Header from './Header';
@@ -25,7 +25,8 @@ class Home extends Component<AppProps, AppState> {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
-		dispatch(getProfileAndMessages());
+		dispatch(getUserInfo())
+		// dispatch(getProfileAndMessages());
 	}
 	
 	render() {
@@ -40,7 +41,7 @@ class Home extends Component<AppProps, AppState> {
 					<Modal />
 					<Messages messages={ messages }/>
 					<div id="rightSide">
-						{/* <CreatePost /> */}
+						<CreatePost sender={ user.uid }/>
 						<div id="cards">
 							<Card text={ user.email }/>
 						</div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../style/Card.css';
 
 type CardProps = {
@@ -54,13 +55,49 @@ class Card extends Component<CardProps, CardState> {
 	}
 }
 
-export class CreatePost extends Component {
+type CreatePostProps = {
+	sender: any
+};
+
+type CreatePostState = {
+	receiver?: string,
+	title?: string,
+	text?: string
+};
+
+export class CreatePost extends Component<CreatePostProps, CreatePostState> {
+
+	constructor(props: any) {
+		super(props);
+
+		this.state = {
+			receiver: '',
+			title: '',
+			text: ''
+		};
+	}
+
+	handleCreatePost = (e: any) => {
+		e.preventDefault();
+
+		let infoToSend = {...this.state, sender: this.props.sender};
+		axios.post(`${ process.env.REACT_APP_API }/messages/send`, infoToSend);
+	}
+
+	handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+		const { name, value } = e.currentTarget;
+		this.setState({ [name]: value });
+	}
+
 	render() {
+		const { receiver, title, text } = this.state;
 		return (
 			<div id="createPost">
 				<div className="card">
-					<form>
-						<input type="text" placeholder="What do you want to say?" />
+					<form onSubmit={ this.handleCreatePost }>
+						<input type="text" name="receiver" value={ receiver } placeholder="Receiver" onChange={ this.handleChange } />
+						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } />
+						<input type="text" name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } />
 						<button>Submit</button>
 					</form>
 				</div>
