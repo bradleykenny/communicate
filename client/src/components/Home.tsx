@@ -26,7 +26,7 @@ class Home extends Component<AppProps, AppState> {
 	constructor(props: AppProps) {
 		super(props);
 		this.state = {
-			sendReceive: "send"
+			sendReceive: "receive"
 		}
 	}
 
