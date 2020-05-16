@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Switch, Route, useHistory } from "react-router-dom";
+import { Router, Switch, Route, useHistory, Redirect} from "react-router-dom";
 
 import '../style/App.css';
 
@@ -35,8 +35,11 @@ class App extends Component<{ dispatch: any }, {}> {
 					<Route path="/register">
 						<Register />
 					</Route>
-					<Route path="/">
+					<Route path="/home">
 						<Home />
+					</Route>
+					<Route path="/">
+						<Redirect to="/home" />
 					</Route>
 				</Switch>
 			</Router>

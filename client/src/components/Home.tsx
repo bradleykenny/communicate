@@ -18,30 +18,39 @@ type AppProps = {
 }
 
 type AppState = {
-	cards: Array<string>
+	sendReceive: "send" | "receive"
 }
 
 class Home extends Component<AppProps, AppState> {
 
+	constructor(props: AppProps) {
+		super(props);
+		this.state = {
+			sendReceive: "send"
+		}
+	}
+
 	componentWillMount() {
 		const { dispatch } = this.props;
-		(localStorage.getItem('sessionID') === null) && history.push('login');
 		dispatch(getUserInfo());
 	}
 
 	wantSent = () => {
 		const { dispatch } = this.props;
+		this.setState({ sendReceive: "send" });
 		dispatch(getMessages(this.props.user.uid, "sent"));
 	}
 
 	wantReceived = () => {
 		const { dispatch } = this.props;
+		this.setState({ sendReceive: "receive" });
 		dispatch(getMessages(this.props.user.uid, "received"));
 	}
 	
 	render() {
 		let user = this.props.user ? this.props.user : emptyUser();
 		let messages = this.props.messages ? this.props.messages : [];
+		let sendReceive = this.state.sendReceive === "receive";
 
 		return (
 			<div className="app">
@@ -50,9 +59,9 @@ class Home extends Component<AppProps, AppState> {
 				<div className="main">
 					<Modal />
 					<div id="leftSidebar">
-						<p className="sendReceiveSelector" onClick={ this.wantReceived }>Received</p>
-						<p className="sendReceiveSelector" onClick={ this.wantSent }>Sent</p>
-						<Messages messages={ messages }/>
+						<p className={ "sendReceiveSelector" + (sendReceive ? " selected" : "") } onClick={ this.wantReceived }>Received</p>
+						<p className={ "sendReceiveSelector" + (!sendReceive ? " selected" : "") } onClick={ this.wantSent }>Sent</p>
+						<Messages messages={ messages } sendReceive={ this.state.sendReceive }/>
 					</div>
 					<div id="rightSide">
 						<CreatePost sender={ user.uid }/>

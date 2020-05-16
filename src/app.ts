@@ -36,14 +36,13 @@ app.get('/', function (req: any, res: any) {
 
 app.post('/login', async (req: any, res: any) => {
 	try {
-		console.log(req.body);
 		let result = await Authentication.login(req.body.username, req.body.password)
 			.then((results: any) => {
 				return results;
 			});
 		res.send(result);
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 	}
 });
 
@@ -71,7 +70,7 @@ app.get('/get/user', async (req: any, res: any) => {
 
 		return res.send({ ...account, ...profile });
 	} catch(err) {
-		console.log(err);
+		console.error(err);
 	}
 });
 
@@ -90,29 +89,27 @@ app.post('/messages/send', async (req: any, res: any) => {
 	return res.send(`Sent message from ${sender} to ${receiver}.`);
 });
 
-app.get('/messages/get/sent', async (req: any, res: any) => {
-	try {
-		let result = await MessagesTable.getMessagesSent(req.query.uid)
-			.then((results: any) => {
-				console.log(results);
-				return results;
-			});
-		res.send(result);
-	} catch(err) {
-		console.log(err);
-	}
-});
-
 app.get('/messages/get/received', async (req: any, res: any) => {
 	try {
 		let result = await MessagesTable.getMessagesReceived(req.query.uid)
 			.then((results: any) => {
-				console.log(results);
 				return results;
 			});
 		res.send(result);
 	} catch(err) {
-		console.log(err);
+		console.error(err);
+	}
+});
+
+app.get('/messages/get/sent', async (req: any, res: any) => {
+	try {
+		let result = await MessagesTable.getMessagesSent(req.query.uid)
+			.then((results: any) => {
+				return results;
+			});
+		res.send(result);
+	} catch(err) {
+		console.error(err);
 	}
 });
 

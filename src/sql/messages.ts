@@ -41,8 +41,9 @@ export class MessagesTable {
 				(error: any, results: any) => {
 					if (error) console.error(error);
 					if (results.length > 0) {
-						this.modifyUsername(results);
-						resolve(results);
+						this.modifyUsernames(results).then((res: any) => {
+							resolve(res);
+						});
 					}
 					else resolve(results);
 				}
@@ -60,8 +61,9 @@ export class MessagesTable {
 				(error: any, results: any) => {
 					if (error) console.error(error);
 					if (results.length > 0) {
-						this.modifyUsername(results);
-						resolve(results);
+						this.modifyUsernames(results).then((res: any) => {
+							resolve(res);
+						});
 					}
 					else resolve(results);
 				}
@@ -69,22 +71,27 @@ export class MessagesTable {
 		});
 	};
 
-	static modifyUsername (messages: Array<Message>): Promise<object> {
-		const query = "SELECT * FROM Accounts WHERE uid=?"; // TODO: change this to not get * but only parts needed
+	static modifyUsernames (messages: Array<Message>): Promise<object> {
+		const query = "SELECT * FROM Accounts WHERE uid=?; SELECT * FROM Accounts WHERE uid=?;"; // TODO: change this to not get * but only parts needed
 		return new Promise((resolve: any) => {
-			resolve(messages.map((value: Message) => {
+			let finals: Message[] = [];
+			messages.forEach((value: Message) => {
 				connection.query(
-				query, 
-				[ value.sender ], 
-				(error: any, results: Array<Account>) => {
-					if (error) console.error(error);
-					value.sender = results[0].username;
-					console.log(value);
-					return value;
-				})
-				console.log(value);
-			}));
+					query, 
+					[ value.sender, value.receiver ], 
+					(error: any, results: Array<Array<Account>>) => {
+						if (error) console.error(error);
+						value.sender = results[0][0].username;
+						value.receiver = results[1][0].username;
+						finals.push(value);
+						// TODO: make this better, feels super dodgy
+						if (finals.length === messages.length) {
+							resolve(finals);
+						}
+					}
+				);
+			});
 		});
-	}
+	};
 
 };

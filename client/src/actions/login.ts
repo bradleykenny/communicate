@@ -30,7 +30,7 @@ export function login(username: string, password: string) {
                 (user: LoginUserData) => { 
 					if (user) {
 						dispatch(loginSuccess(user));
-						history.push('/');
+						history.push('/home');
 					} else {
                     	dispatch(loginFailed("Username/password incorrect."));
 					}
