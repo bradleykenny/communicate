@@ -15,7 +15,7 @@ class Header extends Component<{ user: UserData }, {}> {
 					<a href="/">Home</a>
 					<a href="/">{ this.props.user.email }</a>
 					{ localStorage.getItem('sessionID') && <a href="/logout">Logout</a> }
-					{ localStorage.getItem('sessionID') && <a href="/login">Login</a> }
+					{ !localStorage.getItem('sessionID') && <a href="/login">Login</a> }
 				</p>
 			</header>
 		);
