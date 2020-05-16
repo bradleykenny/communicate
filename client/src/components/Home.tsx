@@ -32,6 +32,7 @@ class Home extends Component<AppProps, AppState> {
 
 	componentWillMount() {
 		const { dispatch } = this.props;
+		if (!localStorage.getItem('sessionID')) history.push("/login");
 		dispatch(getUserInfo());
 	}
 
