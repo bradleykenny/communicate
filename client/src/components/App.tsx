@@ -47,4 +47,4 @@ class App extends Component<{ dispatch: any }, {}> {
 	}
 }
 
-export default App;
+export default App

@@ -7,9 +7,10 @@ import { getUserInfo, UserData, emptyUser, getMessages, MessageData } from '../a
 import { history } from'../services/history';
 
 import Header from './Header';
-import Card, { CreatePost } from './Card';
+import Card from './Card';
 import Messages from './Messages';
 import Modal from './Modal';
+import CreatePost from './CreatePost';
 
 type AppProps = {
 	dispatch: any,
