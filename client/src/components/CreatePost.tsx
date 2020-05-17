@@ -38,11 +38,11 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		this.setState({ users: users.data });
 	}
 
-	handleCreatePost = (e: any) => {
+	handleCreatePost = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		let infoToSend = {...this.state, sender: this.props.sender};
-		if (infoToSend.text && infoToSend.title && infoToSend.receiver) {
+		if (infoToSend.title && infoToSend.text && infoToSend.receiver) {
 			axios.post(`${ process.env.REACT_APP_API }/messages/send`, infoToSend);
 			alert("Message sent.");
 			this.setState({ receiver: '', title: '', text: '' });
@@ -51,14 +51,10 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		}
 	}
 
-	handleChange = (e: any) => {
+	handleChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement> | React.FormEvent<HTMLTextAreaElement>) => {
 		const { name, value } = e.currentTarget;
 		this.setState({ [name]: value });
 	}
-
-	selectChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    	this.setState({ receiver: e.currentTarget.value });
-  	}
 
 	render() {
 		const { receiver, title, text } = this.state;
@@ -66,7 +62,7 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 			<div id="createPost">
 				<div className="card">
 					<form onSubmit={ this.handleCreatePost } className="createPostForm">
-						<select className="textField" name="receiver" value={ receiver } onChange={ this.selectChange }>
+						<select className="textField" name="receiver" value={ receiver } onChange={ this.handleChange }>
 							<option value="" disabled selected>Receiver ▼</option>
 							{ this.state.users && this.state.users.map((o: LimitedAccount) => <option key={o.username} value={o.username}>{o.username}</option>)}
 						</select>
