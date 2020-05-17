@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../style/Card.css';
+import '../style/CreatePost.css';
 
 type LimitedAccount = {
 	uid: string,
@@ -41,12 +42,16 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		e.preventDefault();
 
 		let infoToSend = {...this.state, sender: this.props.sender};
-		axios.post(`${ process.env.REACT_APP_API }/messages/send`, infoToSend);
-		alert("Message sent.");
-		this.setState({ receiver: '', title: '', text: '' });
+		if (infoToSend.text && infoToSend.title && infoToSend.receiver) {
+			axios.post(`${ process.env.REACT_APP_API }/messages/send`, infoToSend);
+			alert("Message sent.");
+			this.setState({ receiver: '', title: '', text: '' });
+		} else {
+			alert("Missing something?");
+		}
 	}
 
-	handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+	handleChange = (e: any) => {
 		const { name, value } = e.currentTarget;
 		this.setState({ [name]: value });
 	}
@@ -60,14 +65,15 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		return (
 			<div id="createPost">
 				<div className="card">
-					<form onSubmit={ this.handleCreatePost }>
-						<select name="receiver" value={ receiver } onChange={ this.selectChange }>
+					<form onSubmit={ this.handleCreatePost } className="createPostForm">
+						<select className="textField" name="receiver" value={ receiver } onChange={ this.selectChange }>
 							<option value="" disabled selected>Receiver ▼</option>
 							{ this.state.users && this.state.users.map((o: LimitedAccount) => <option key={o.username} value={o.username}>{o.username}</option>)}
 						</select>
-						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } />
-						<input type="text" name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } />
+						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } className="createTitle" />
+						<textarea name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } className="createText" />
 						<button>Submit</button>
+						<button className="secondaryBtn">Hide</button>
 					</form>
 				</div>
 			</div>

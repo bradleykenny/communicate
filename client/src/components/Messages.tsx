@@ -15,6 +15,7 @@ class Messages extends Component<MessagesProps, {}> {
 			let { sender, receiver, title, text, time } = message;
 			elements.push(<Message sendReceive={ this.props.sendReceive } sender={ sender } receiver={ receiver } title={ title } text={ text } time={ time } />);
 		});
+		elements.sort((a: Message, b: Message) => { return Date.parse(b.props.time) - Date.parse(a.props.time); })
 		return elements;
 	};
 
@@ -51,7 +52,10 @@ class Message extends Component<MessageProps, {}> {
 	render() {
 		let { sendReceive, sender, receiver, time, title, text } = this.props;
 		let date = new Date(time);
-		let formattedDate = date.toLocaleString([], { hour12: true, hour: '2-digit', minute:'2-digit', weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' });
+		let exOptions = { hour12: true, hour: '2-digit', minute:'2-digit', weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Australia/Sydney' };
+		let standardOptions = { hour12: true, hour: '2-digit', minute:'2-digit', weekday: 'short', timeZone: 'Australia/Sydney' };
+		let formattedDate = date.toLocaleString([], standardOptions);
+		
 		return (
 			<div className="innerCard">
 				{ sendReceive === "receive" && <h2>{ sender }</h2> }

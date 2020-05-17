@@ -13,6 +13,7 @@
 .loginCard > form > input {
 	display: block;
 	margin-bottom: 15px;
+	max-width: 480px;
 }
 
 .loginCard > form > p {

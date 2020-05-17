@@ -64,11 +64,11 @@ class Login extends Component<LoginProps, LoginState> {
 						{submitted && !username &&
 							<div className="forgot-input">Username is required</div>
 						}
-						<input type="text" placeholder="Username" name="username" value={ username } onChange={ this.handleChange } tabIndex={1} />
+						<input className="textField" type="text" placeholder="Username" name="username" value={ username } onChange={ this.handleChange } tabIndex={1} />
 						{submitted && !password &&
 							<div className="forgot-input">Password is required</div>
 						}
-						<input type="password" placeholder="Password" name="password" value={ password } onChange={ this.handleChange } tabIndex={2} />
+						<input className="textField" type="password" placeholder="Password" name="password" value={ password } onChange={ this.handleChange } tabIndex={2} />
 						<p>
 							<a href="/register">Don't have an account with us?</a>
 						</p>

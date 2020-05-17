@@ -29,7 +29,7 @@ class Card extends Component<CardProps, {}> {
 
 	comments = () => {
 		return (
-			<input type="text" placeholder="What's your comment?" />
+			<input className="textField" type="text" placeholder="What's your comment?" />
 		);
 	}
 }

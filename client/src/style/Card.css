@@ -17,10 +17,7 @@
 	margin-top: 20px;
 }
 
-.card > .comments > input[type="text"], 
-.card > form > input[type="text"], 
-.card > form > input[type="password"],
-.card > form > select {
+.textField {
 	padding: 12.5px 10px;
 	outline: none;
 	border: 0px solid #a1a1a1;
@@ -28,15 +25,27 @@
 	border-radius: 5px;
 	font-size: 16px;
 	width: 100%;
-	max-width: 480px;
 	transition: ease 0.25s;
 	margin-bottom: 10px;
 }
 
+.textField:hover {
+	background-color: rgba(0,0,0,0.15);
+	padding: 11.5px 9px;
+	border: 1px solid rgba(0,0,0,0.20);
+}
+
+.textField:focus {
+	background-color: rgba(0,0,0,0.15);
+	/* box-shadow: 0 0 10px rgba(0,0,0,0.2); */
+	padding: 10.5px 8px;
+	border: 2px solid rgba(0,0,0,0.20);
+}
+
 .card > form > select {
 	-webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 .card > .comments > img {
@@ -49,21 +58,6 @@
 	margin-left: 15px;
 	background-size: contain;
 	float: right;
-}
- 
-.card > form > input[type="text"]:hover, 
-.card > form > input[type="password"]:hover {
-	background-color: rgba(0,0,0,0.15);
-	padding: 11.5px 9px;
-	border: 1px solid rgba(0,0,0,0.20);
-}
-
-.card > form > input[type="text"]:focus, 
-.card > form > input[type="password"]:focus {
-	background-color: rgba(0,0,0,0.15);
-	/* box-shadow: 0 0 10px rgba(0,0,0,0.2); */
-	padding: 10.5px 8px;
-	border: 2px solid rgba(0,0,0,0.20);
 }
 
 button {
