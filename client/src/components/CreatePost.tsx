@@ -56,6 +56,10 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		this.setState({ [name]: value });
 	}
 
+	handleHide = (e: React.FormEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+	}
+
 	render() {
 		const { receiver, title, text } = this.state;
 		return (
@@ -69,7 +73,7 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } className="createTitle" />
 						<textarea name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } className="createText" />
 						<button>Submit</button>
-						<button className="secondaryBtn">Hide</button>
+						<button className="secondaryBtn" onClick={ this.handleHide }>Hide</button>
 					</form>
 				</div>
 			</div>
