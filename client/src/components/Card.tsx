@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { MessageData, emptyMessage } from '../actions';
+
 import '../style/Card.css';
 
 type CardProps = {
 	title: string,
-	text: string
+	text: string,
+	focusMessage: MessageData,
 }
 
 class Card extends Component<CardProps, {}> {
@@ -13,15 +18,17 @@ class Card extends Component<CardProps, {}> {
 	}
 
 	render() {
-		let { title, text } = this.props;
+		let { sender, receiver, title, text } = this.props.focusMessage ? this.props.focusMessage : emptyMessage();
 
 		return (
-			<div className="card">
+			<div className="card focusCard">
+				<p>FROM: <b>{ sender }</b></p>
+				<p>TO: <b>{ receiver }</b></p>
+				<hr></hr>
 				<h2 >{ title }</h2>
 				<p >{ text }</p>
 				<div className="comments">
 					{ this.comments() }
-					<img src="https://i.ytimg.com/vi/yL1z1ZHD0K4/hqdefault.jpg"></img>
 				</div>
 			</div>
 		);
@@ -29,9 +36,17 @@ class Card extends Component<CardProps, {}> {
 
 	comments = () => {
 		return (
-			<input className="textField" type="text" placeholder="What's your comment?" />
+			<input className="textField" type="text" placeholder="What's your comment?" disabled />
 		);
 	}
 }
 
-export default Card;
+function mapStateToProps(state: any) {
+	const { focusMessage } = state.focusMessage;
+	return {
+		focusMessage
+	};
+}
+
+const connectedCard = connect(mapStateToProps)(Card);
+export default connectedCard;

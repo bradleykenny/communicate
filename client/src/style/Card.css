@@ -87,3 +87,14 @@ button:focus {
 form {
 	overflow: visible; /* this needs to be `visible` so that input box shadow not cut off */
 }
+
+.focusCard {
+	padding-top: 40px;
+}
+.focusCard > p {
+	margin-top: -10px;
+}
+
+.focusCard > h2 {
+	margin-bottom: 20px;
+}
