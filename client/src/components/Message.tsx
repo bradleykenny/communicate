@@ -35,7 +35,7 @@ class Message extends Component<MessageProps, {}> {
 		let date = new Date(time);
 		
 		let exOptions = { hour12: true, hour: '2-digit', minute:'2-digit', weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Australia/Sydney' };
-		let standardOptions = { hour12: true, hour: '2-digit', minute:'2-digit', weekday: 'short', timeZone: 'Australia/Sydney' };
+		let standardOptions = { hour12: true, hour: '2-digit', minute:'2-digit', month: 'long', day: 'numeric', timeZone: 'Australia/Sydney' };
 		let formattedDate = date.toLocaleString([], standardOptions);
 		
 		return (
