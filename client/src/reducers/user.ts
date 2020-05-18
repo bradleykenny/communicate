@@ -1,4 +1,4 @@
-import { UserAction } from '../actions/user';
+import { UserAction } from '../actions';
 
 export function userReducer(state = {}, action: UserAction) {
 	switch (action.type) {

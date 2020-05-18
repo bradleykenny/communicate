@@ -18,6 +18,7 @@ type CreatePostState = {
 	title?: string,
 	text?: string
 	users?: Array<LimitedAccount>
+	showCard?: boolean,
 };
 
 class CreatePost extends Component<CreatePostProps, CreatePostState> {
@@ -29,7 +30,8 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 			receiver: '',
 			title: '',
 			text: '',
-			users: []
+			users: [],
+			showCard: false,
 		};
 	}
 
@@ -56,8 +58,9 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		this.setState({ [name]: value });
 	}
 
-	handleHide = (e: React.FormEvent<HTMLButtonElement>) => {
+	handleShowHide = (e: React.FormEvent<HTMLButtonElement> | React.FormEvent<HTMLParagraphElement>) => {
 		e.preventDefault();
+		this.setState({ showCard: !this.state.showCard });
 	}
 
 	render() {
@@ -65,16 +68,23 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		return (
 			<div id="createPost">
 				<div className="card">
-					<form onSubmit={ this.handleCreatePost } className="createPostForm">
-						<select className="textField" name="receiver" value={ receiver } onChange={ this.handleChange }>
-							<option value="" disabled selected>Receiver ▼</option>
-							{ this.state.users && this.state.users.map((o: LimitedAccount) => <option key={o.username} value={o.username}>{o.username}</option>)}
-						</select>
-						<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } className="createTitle" />
-						<textarea name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } className="createText" />
-						<button>Submit</button>
-						<button className="secondaryBtn" onClick={ this.handleHide }>Hide</button>
-					</form>
+					{/* Show fields to send message on true */}
+					{ this.state.showCard &&
+						<form onSubmit={ this.handleCreatePost } className="createPostForm">
+							<select name="receiver" value={ receiver } onChange={ this.handleChange }>
+								<option value="" disabled selected>Receiver ▼</option>
+								{ this.state.users && this.state.users.map((o: LimitedAccount) => <option key={o.username} value={o.username}>{o.username}</option>)}
+							</select>
+							<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } className="createTitle" />
+							<textarea name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } className="createText" />
+							<button>Submit</button>
+							<button className="secondaryBtn" onClick={ this.handleShowHide }>Hide</button>
+						</form>
+					}
+					{/* Show prompt on false */}
+					{ !this.state.showCard &&
+						<p onClick={ this.handleShowHide }>Click here to send something...</p>
+					}
 				</div>
 			</div>
 		);

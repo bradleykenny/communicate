@@ -1,4 +1,4 @@
-import { MessageAction } from '../actions/messages';
+import { MessageAction } from '../actions';
 
 export function messageReducer(state = {}, action: MessageAction) {
 	switch (action.type) {

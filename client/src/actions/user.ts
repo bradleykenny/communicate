@@ -42,7 +42,15 @@ export function getUserInfo() {
 
         getUserInfoService()
             .then(
-                (user: UserData) => { dispatch(success(user)); dispatch(getMessages(user.uid, "received")); },
+                (user: any) => {
+					if (user === 'undefined') {
+						localStorage.removeItem('sessionID');
+						history.push("/login");
+					} else {
+						dispatch(success(user)); 
+						dispatch(getMessages(user.uid, "received")); 
+					}
+				},
                 (error: any) => dispatch(failure(error))
             );
     };

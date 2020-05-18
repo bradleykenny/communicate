@@ -1,4 +1,4 @@
-import { LoginAction } from '../actions/login';
+import { LoginAction } from '../actions';
 
 export function authReducer(state = {}, action: LoginAction) {
 	switch (action.type) {

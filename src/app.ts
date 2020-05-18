@@ -56,7 +56,7 @@ app.post('/register', (req: any, res: any) => {
 
 app.get('/get/user', async (req: any, res: any) => {
 	try {
-		let uid = await SessionsTable.getUserID(req.query.sid).then((res:any) => { return res[0].uid; });
+		let uid = await SessionsTable.getUserID(req.query.sid).then((res: any) => { if (res === undefined) { return res.send(undefined); } return res[0].uid; });
 		
 		let account = await AccountsTable.getUser(uid)
 			.then((results: any) => {
@@ -71,6 +71,7 @@ app.get('/get/user', async (req: any, res: any) => {
 		return res.send({ ...account, ...profile });
 	} catch(err) {
 		console.error(err);
+		return res.send("undefined");
 	}
 });
 
