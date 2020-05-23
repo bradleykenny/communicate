@@ -1,12 +1,5 @@
 import { connection } from './index';
-
-export interface Profile {
-	uid: string,
-	firstName: string,
-	lastName: string,
-	phoneNumber: string,
-	profilePicture: string,
-}
+import { Profile } from '../types/Profile';
 
 export class ProfilesTable {
 

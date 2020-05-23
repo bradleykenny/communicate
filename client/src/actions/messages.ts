@@ -1,4 +1,3 @@
-import { history } from'../services/history';
 import { getMessageService } from '../services/messageService';
 
 export interface MessageRequestData {

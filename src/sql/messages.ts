@@ -1,17 +1,8 @@
 import { connection } from './index';
 import { v4 as uuid } from 'uuid';
 
-import { AccountsTable, Account } from './';
-
-export interface Message {
-	mid: string,
-	sender: string,
-	receiver: string,
-	title: string,
-	text: string,
-	time: Date
-
-}
+import { AccountsTable } from './';
+import { Account, Message } from '../types';
 
 export class MessagesTable {
 

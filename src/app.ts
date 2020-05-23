@@ -5,7 +5,8 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
 
-import { AccountsTable, Authentication, ProfilesTable, SessionsTable, MessagesTable, Account } from './sql';
+import { AccountsTable, Authentication, ProfilesTable, SessionsTable, MessagesTable } from './sql';
+import { Account } from './types';
 
 import { filteredAccount, filteredProfile } from './services/user';
 

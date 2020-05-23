@@ -1,4 +1,4 @@
-import { Account, Profile } from '../sql/';
+import { Account, Profile } from '../types/';
 
 export const filteredAccount = (user: Account) => {
 	delete user.password;
