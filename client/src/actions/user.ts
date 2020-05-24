@@ -2,11 +2,11 @@ import { history } from'../services/history';
 import { getMessages } from './messages';
 import { getUserInfoService } from '../services/userService';
 
-export interface SessionData {
+export type SessionData = {
 	sid: string,
 }
 
-export interface UserData {
+export type UserData = {
 	uid: string,
 	email: string,
 	firstName: string,

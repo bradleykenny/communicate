@@ -1,12 +1,12 @@
 import { loginUserService, logoutUserService } from '../services/authenticationService';
 import { history } from'../services/history';
 
-interface LoginData {
+type LoginData = {
 	username: string;
 	password: string;
 }
 
-export interface LoginUserData {
+export type LoginUserData = {
 	username: string;
 	email: string;
 	profilePicture: string;

@@ -1,11 +1,11 @@
 import { getMessageService } from '../services/messageService';
 
-export interface MessageRequestData {
+export type MessageRequestData = {
 	uid: string,
 	type: "sent" | "received" | "all",
 }
 
-export interface MessageData {
+export type MessageData = {
 	mid: string,
 	sender: string,
 	receiver: string,

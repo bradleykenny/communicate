@@ -1,4 +1,4 @@
-export interface Message {
+export type Message = {
 	mid: string,
 	sender: string,
 	receiver: string,
