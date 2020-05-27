@@ -14,7 +14,8 @@ import CreatePost from './CreatePost';
 type AppProps = {
 	dispatch: any,
 	user: UserData,
-	messages: Array<MessageData>
+	messages: Array<MessageData>,
+	requestSent: boolean
 }
 
 type AppState = {
@@ -62,6 +63,7 @@ class Home extends Component<AppProps, AppState> {
 					<div id="leftSidebar">
 						<p className={ "sendReceiveSelector" + (sendReceive ? " selected" : "") } onClick={ this.wantReceived }>Received</p>
 						<p className={ "sendReceiveSelector" + (!sendReceive ? " selected" : "") } onClick={ this.wantSent }>Sent</p>
+						{ this.props.requestSent === true && <img src="loading.svg" className="loadingWheel" /> }
 						<Messages messages={ messages } sendReceive={ this.state.sendReceive }/>
 					</div>
 					<div id="rightSide">
@@ -78,10 +80,11 @@ class Home extends Component<AppProps, AppState> {
 
 function mapStateToProps(state: any) {
 	const { user } = state.user;
-	const { messages } = state.messages;
+	const { messages, requestSent } = state.messages;
 	return {
 		user,
-		messages
+		messages,
+		requestSent
 	};
 }
 

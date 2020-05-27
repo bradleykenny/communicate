@@ -54,3 +54,10 @@
 #time {
 	float: right;
 }
+
+.loadingWheel {
+	height: 40px;
+	width: 40px;
+	display: block;
+	margin: 50px auto auto;
+}
