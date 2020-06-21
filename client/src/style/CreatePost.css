@@ -55,3 +55,19 @@ form > .createText {
 	background-color: rgba(0,0,0,0.35);
 	margin-right: 10px;
 }
+
+.createPostButton {
+	background-color: rgba(27,123,242,1);
+	color: white;
+	padding: 12.5px 25px;
+	position: absolute;
+	bottom: 10px;
+	right: 30px;
+	border-radius: 500px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+
+.createPost {
+	position: absolute;
+}

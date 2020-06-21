@@ -67,9 +67,9 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 		const { receiver, title, text } = this.state;
 		return (
 			<div id="createPost">
-				<div className="card">
-					{/* Show fields to send message on true */}
-					{ this.state.showCard &&
+				{/* Show fields to send message on true */}
+				{ this.state.showCard &&
+					<div className="card">
 						<form onSubmit={ this.handleCreatePost } className="createPostForm">
 							<select name="receiver" value={ receiver } onChange={ this.handleChange }>
 								<option value="" disabled selected>Receiver ▼</option>
@@ -80,12 +80,11 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 							<button>Submit</button>
 							<button className="secondaryBtn" onClick={ this.handleShowHide }>Hide</button>
 						</form>
-					}
-					{/* Show prompt on false */}
-					{ !this.state.showCard &&
-						<p onClick={ this.handleShowHide }>Click here to send something...</p>
-					}
-				</div>
+					</div>
+				}
+				{ !this.state.showCard && 
+					<p className="createPostButton" onClick={ this.handleShowHide }>Create</p>
+				}
 			</div>
 		);
 	}

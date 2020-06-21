@@ -56,6 +56,7 @@ class Home extends Component<AppProps, AppState> {
 
 		return (
 			<div className="app">
+				<CreatePost sender={ user.uid }/>
 				<Header user={ user }/>
 				<div id="headerSpacer"></div>
 				<div className="main">
@@ -67,7 +68,6 @@ class Home extends Component<AppProps, AppState> {
 						<Messages messages={ messages } sendReceive={ this.state.sendReceive }/>
 					</div>
 					<div id="rightSide">
-						<CreatePost sender={ user.uid }/>
 						<div id="cards">
 							<Card title={ user.uid } text={ user.email }/>
 						</div>
