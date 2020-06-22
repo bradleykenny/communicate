@@ -66,7 +66,7 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 	render() {
 		const { receiver, title, text } = this.state;
 		return (
-			<div id="createPost">
+			<div id="createPost" className={ this.state.showCard ? "createPostActive" : "" }>
 				{/* Show fields to send message on true */}
 				{ this.state.showCard &&
 					<div className="card">
@@ -77,13 +77,13 @@ class CreatePost extends Component<CreatePostProps, CreatePostState> {
 							</select>
 							<input type="text" name="title" value={ title } placeholder="Title" onChange={ this.handleChange } className="createTitle" />
 							<textarea name="text" value={ text } placeholder="What do you want to say?" onChange={ this.handleChange } className="createText" />
-							<button>Submit</button>
+							<button>Send</button>
 							<button className="secondaryBtn" onClick={ this.handleShowHide }>Hide</button>
 						</form>
 					</div>
 				}
 				{ !this.state.showCard && 
-					<p className="createPostButton" onClick={ this.handleShowHide }>Create</p>
+						<p className="createPostButton" onClick={ this.handleShowHide }>Create</p>
 				}
 			</div>
 		);
