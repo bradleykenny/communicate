@@ -9,6 +9,7 @@ import Login from './Login';
 import Register from './Register';
 import Home from './Home';
 import Logout from './Logout';
+import Profile from './Profile';
 
 class App extends Component<{ dispatch: any }, {}> {
 	
@@ -37,6 +38,9 @@ class App extends Component<{ dispatch: any }, {}> {
 					</Route>
 					<Route path="/home">
 						<Home />
+					</Route>
+					<Route path="/profile">
+						<Profile />
 					</Route>
 					<Route path="/">
 						<Redirect to="/home" />
