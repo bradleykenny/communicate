@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { UserData, MessageData } from '../actions/';
+import CreatePost from './CreatePost';
+import Header from './Header';
+import Card from './Card';
+
+import { getUserInfo, UserData, emptyUser, getMessages, MessageData } from '../actions/';
 
 type ProfileProps = {
 	dispatch: any,
@@ -16,10 +20,22 @@ class Profile extends Component<ProfileProps, ProfileState> {
 		super(props);
 	}
 
+	componentWillMount() {
+		const { dispatch } = this.props;
+		dispatch(getUserInfo());
+	}
+
 	render() {
-		return(
-			<div>
-				<p></p>
+		let user = this.props.user ? this.props.user : emptyUser();
+		
+		return (
+			<div className="app">
+				<CreatePost sender={ user.uid }/>
+				<Header user={ user }/>
+				<div id="headerSpacer"></div>
+				<div className="main">
+					<Card text={ user.email } />
+				</div>
 			</div>
 		);
 	}

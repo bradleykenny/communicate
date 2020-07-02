@@ -6,9 +6,9 @@ import { MessageData, emptyMessage } from '../actions';
 import '../style/Card.css';
 
 type CardProps = {
-	title: string,
+	title?: string,
 	text: string,
-	focusMessage: MessageData,
+	focusMessage?: MessageData,
 }
 
 class Card extends Component<CardProps, {}> {
