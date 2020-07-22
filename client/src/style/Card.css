@@ -92,9 +92,21 @@ form {
 	white-space: pre;
 }
 .focusCard > p {
-	margin-top: -10px;
+	margin: 5px auto;
 }
 
+/* .focusCard > h2 {
+	margin: 15px auto 25px;
+} */
+
 .focusCard > h2 {
-	margin-bottom: 20px;
+	margin-top: 0px;
+}
+
+.fromTo {
+	font-size: 12px;
+	margin-right: 5px;
+	background-color: #cdcdcd;
+	padding: 3px 5px;
+	border-radius: 5px;
 }

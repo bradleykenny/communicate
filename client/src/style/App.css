@@ -3,7 +3,7 @@
 }
 
 body {
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0, 0, 0, 0.1);
 	height: 100%;
 	position: relative;
 }
@@ -41,6 +41,12 @@ body * {
 }
 
 .selected {
-	background-color: rgba(27,123,242,1);
+	background-color: rgba(27, 123, 242, 1);
 	color: white;
+}
+
+hr {
+	outline: none;
+	border: 1px solid #cdcdcd;
+	margin: 10px auto;
 }
