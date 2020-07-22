@@ -1,5 +1,5 @@
 .card {
-	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	margin: 20px;
 	padding: 20px 35px;
 	border-radius: 5px;
@@ -21,7 +21,7 @@
 	padding: 12.5px 10px;
 	outline: none;
 	border: 0px solid #a1a1a1;
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
 	font-size: 16px;
 	width: 100%;
@@ -29,16 +29,16 @@
 }
 
 .textField:hover {
-	background-color: rgba(0,0,0,0.15);
+	background-color: rgba(0, 0, 0, 0.15);
 	padding: 11.5px 9px;
-	border: 1px solid rgba(0,0,0,0.20);
+	border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .textField:focus {
-	background-color: rgba(0,0,0,0.15);
+	background-color: rgba(0, 0, 0, 0.15);
 	/* box-shadow: 0 0 10px rgba(0,0,0,0.2); */
 	padding: 10.5px 8px;
-	border: 2px solid rgba(0,0,0,0.20);
+	border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .card > form > select {
@@ -61,7 +61,7 @@
 
 button {
 	padding: 10px 15px;
-	background-color: rgba(27,123,242,1);
+	background-color: rgba(27, 123, 242, 1);
 	color: white;
 	outline: none;
 	border-radius: 5px;
@@ -69,17 +69,17 @@ button {
 	font-size: 16px;
 	margin-top: 10px;
 	cursor: pointer;
-	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	transition: ease 0.25s;
 	float: right;
 }
 
 button:hover {
-	box-shadow: 0 0 10px rgba(0,0,0,0.4);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 button:focus {
-	box-shadow: 0 0 10px rgba(0,0,0,0.4);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 	background-color: rgb(14, 102, 209);
 }
 
@@ -89,6 +89,7 @@ form {
 
 .focusCard {
 	padding-top: 40px;
+	white-space: pre;
 }
 .focusCard > p {
 	margin-top: -10px;

@@ -34,7 +34,7 @@ class Register extends Component<{}, RegisterState> {
 		this.setState({ [name]: value });
 	}
 
-	 submitForm = async (e: any) => {
+	submitForm = async (e: any) => {
 		e.preventDefault();
 		axios.post(`${ process.env.REACT_APP_API }/register`, this.state);
 		alert("Account created.");
