@@ -23,14 +23,17 @@ class Card extends Component<CardProps, {}> {
 
 		return (
 			<div className="card focusCard">
+				<h2>{title}</h2>
+				<hr></hr>
 				<p>
-					FROM: <b>{sender}</b>
+					<span className="fromTo">FROM</span>
+					<b>{sender}</b>
 				</p>
 				<p>
-					TO: <b>{receiver}</b>
+					<span className="fromTo">TO</span>
+					<b>{receiver}</b>
 				</p>
 				<hr></hr>
-				<h2>{title}</h2>
 				<p>{text}</p>
 				<div className="comments">{this.comments()}</div>
 			</div>
